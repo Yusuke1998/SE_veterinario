@@ -33,23 +33,23 @@
 						<td>{{ $tratamiento->mascot->weight }}Kg</td>
 						<td>
 							{{-- {{ count( $tratamiento->mascot->vaccines) }} --}}
-								@foreach($tratamiento->mascot->vaccines as $vaccine)
-									@if(count( $tratamiento->mascot->vaccines)>1)
-										{{ $vaccine->name }},
-									@else
-										{{ $vaccine->name }}.
-									@endif
-								@endforeach
+							@foreach($tratamiento->mascot->vaccines as $vaccine)
+								@if(count( $tratamiento->mascot->vaccines)>1)
+									{{ $vaccine->name }},
+								@else
+									{{ $vaccine->name }}.
+								@endif
+							@endforeach
 						</td>
 						<td>
 							{{-- {{ count( $tratamiento->mascot->symptoms) }} --}}
-								@foreach($tratamiento->mascot->symptoms as $symptom)
-									@if(count( $tratamiento->mascot->symptoms)>1)
-										{{ $symptom->name }},
-									@else
-										{{ $symptom->name }}.
-									@endif
-								@endforeach
+							@foreach($tratamiento->mascot->symptoms as $symptom)
+								@if(count( $tratamiento->mascot->symptoms)>1)
+									{{ $symptom->name }},
+								@else
+									{{ $symptom->name }}.
+								@endif
+							@endforeach
 						</td>
 					</tr>
 				</tbody>
