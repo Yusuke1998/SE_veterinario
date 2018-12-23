@@ -33,6 +33,8 @@ class MascotsController extends Controller
 
     public function store(Request $request)
     {
+        // <---------------------------------------------------------------------------------->
+
         // Registro de dueño
         $dueño = new Person;
         $dueño->firstname      = $request->firstname;
@@ -41,6 +43,9 @@ class MascotsController extends Controller
         $dueño->telephone      = $request->telephone;
         $dueño->address        = $request->address;
         $dueño->save();
+
+        // <---------------------------------------------------------------------------------->
+        
         // Registro de mascota
         $mascota = new Mascot;
         $mascota->name         =  $request->name;
@@ -54,18 +59,54 @@ class MascotsController extends Controller
         $mascota->symptoms()->sync($request->symptoms);
         $mascota->vaccines()->sync($request->vaccines);
 
+        // <---------------------------------------------------------------------------------->
+
+        // Aqui se instancia el modelo de las reglas para comenzar a interactuar con ellas
+        $reglas = Rule::all();
+
+        foreach ($reglas as $regla) {
+            // dd($regla);
+            if ($mascota->animal_id == $regla->animal_id && $mascota->race_id == $regla->race_id) {
+                if ($mascota->weight >= $regla->weight_1 && $mascota->weight <= $regla->weight_2) {
+                    if ($mascota->age >= $regla->age_1 && $mascota->age <= $regla->age_2) {
+
+                        if ($mascota->symptoms) {
+                            foreach ($mascota->symptoms as $symptom) {
+                                if ($symptom->id == $regla->symptom_id) {
+
+                                    $tratamiento = new Treatment;
+                                    $tratamiento->name = 'Tratamiento para '.$mascota->name;
+                                    $tratamiento->description = $regla->treatment;
+                                    $tratamiento->mascot_id = $mascota->id;
+
+                                    if (\Auth::user()->Doctor) {
+                                        $tratamiento->doctor_id = \Auth::user()->Doctor->id;
+                                    }
+                                    $tratamiento->save();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // <---------------------------------------------------------------------------------->
+
         // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo doctor. Voy a comparar los datos de la mascota con las reglas y si consuerda se crea un nuevo tratamiento asociado a la mascota especificada.
         
-        $tratamiento = new Treatment;
-        $tratamiento->name = 'Tratamiento para '.$mascota->name;
-        $tratamiento->description = '?';
-        // $tratamiento->mascot()->associate($mascota);
-        $tratamiento->mascot_id = $mascota->id;
+        // $tratamiento = new Treatment;
+        // $tratamiento->name = 'Tratamiento para '.$mascota->name;
+        // $tratamiento->description = '?';
+        // // $tratamiento->mascot()->associate($mascota);
+        // $tratamiento->mascot_id = $mascota->id;
 
-        if (\Auth::user()->Doctor) {
-            $tratamiento->doctor_id = \Auth::user()->Doctor->id;
-        }
-        $tratamiento->save();
+        // if (\Auth::user()->Doctor) {
+        //     $tratamiento->doctor_id = \Auth::user()->Doctor->id;
+        // }
+        // $tratamiento->save();
+
+        // <---------------------------------------------------------------------------------->
 
         return redirect(route('mascotSearch'));
     }

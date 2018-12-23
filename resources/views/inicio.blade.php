@@ -19,31 +19,31 @@
 		{{  csrf_field()  }}
 		<div class="col-md-5">
 			<p class="h2 text-center">DUEÑO</p>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Nombres
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: 'Jhonny Jose'" name="firstname">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Apellidos
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: 'Perez Martinez'" name="lastname">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Correo Electronico
 				</label>
 				<input class="form-control" type="email" placeholder="Ejemplo: 'JhonnyJose1998@gmail.com'" name="email">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Telefono
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: '04161428973'" name="telephone">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-12">
 				<label class="">
 					Direccion
 				</label>
@@ -53,25 +53,25 @@
 		{{-- <-----------------------------------------------------------> --}}
 		<div class="col-md-7">	
 			<p class="h2 text-center">MASCOTA</p>
-			<div class="form-group">
+			<div class="form-group col-md-12">
 				<label class="">
 					Ingresa aqui el nombre.
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: 'Chiquitin'" name="name">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Ingresa aqui el Peso.
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: '10'" name="weight">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Ingresa aqui la Edad.
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: '5'" name="age">
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Ingresa aqui el tipo y la raza correspondiente.
 				</label>
@@ -81,13 +81,13 @@
 					@endforeach
 				</select>
 				<select class="my_select_1" name="race_id">
-					<option value="">No aplica</option>
+					<option>No aplica</option>
 					@foreach($razas as $raza)
 						<option value="{{ $raza->id }}">{{ $raza->name }}</option>
 					@endforeach
 				</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-6">
 				<label class="">
 					Ingresa aqui las vacunas que tenga.
 				</label>
@@ -97,7 +97,7 @@
 					@endforeach
 				</select>
 			</div>
-			<div class="form-group">
+			<div class="form-group col-md-12">
 				<label class="">
 					Ingresa aqui los sintomas que tenga.
 				</label>
@@ -108,7 +108,9 @@
 				</select>
 			</div>
 		</div>
-		<input class="form-control btn btn-success" type="submit" name="btn" value="Enviar">
+		<div class="form-group col-md-12">
+			<input class="form-control btn btn-success" type="submit" name="btn" value="Enviar">
+		</div>
 	</form>
 </div>
 @stop
