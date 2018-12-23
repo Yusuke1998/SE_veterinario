@@ -1,5 +1,6 @@
 @extends('layouts.my_app')
 @section('title') Tratamiento a seguir! @stop
+@section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
 	<p class="text-center">Visualiza o imprime el tratamiento recomendado.</p>
@@ -7,10 +8,10 @@
 <div class="col-md-12">
 	<div class="panel">
 		<div class="panel-title">
-			<p class="h4">{{ $tratamiento->name }}</p>
+			<p class="h3">{{ $tratamiento->name }}</p>
 		</div>
 		<div class="panel-body">
-			<p class="text-center">{{ $tratamiento->description }}</p>
+			<p class="h4 text-center">{{ $tratamiento->description }}</p>
 			<table class="table">
 				<thead>
 					<tr>

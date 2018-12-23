@@ -23,28 +23,11 @@ class MascotsController extends Controller
 
     public function index()
     {
-        //
+        $mascotas = Mascot::orderBy('created_at','DESC')->paginate(5);
+        return view('Mascotas.lista')
+        ->with('mascotas',$mascotas);
     }
-    public function create()
-    {
-        //
-    }
-    public function store(Request $request)
-    {
-        //
-    }
-    public function show($id)
-    {
-        //
-    }
-    public function edit($id)
-    {
-        //
-    }
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
     public function destroy($id)
     {
         //

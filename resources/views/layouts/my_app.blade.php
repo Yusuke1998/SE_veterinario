@@ -22,7 +22,7 @@
 
 	                <!-- Branding Image -->
 	                <a class="navbar-brand" href="{{ url('/') }}">
-	                    @yield('title','SE - Asistente Veterinario')
+	                    @yield('title_nav','SE - Asistente Veterinario')
 	                </a>
 	            </div>
 
@@ -62,7 +62,7 @@
 
 	                <!-- Branding Image -->
 	                <a class="navbar-brand" href="{{ url('/') }}">
-	                    @yield('title','SE - Asistente Veterinario')
+	                    @yield('title_nav','SE - Asistente Veterinario')
 	                </a>
 	            </div>
 
@@ -155,18 +155,6 @@
 	                            </ul>
 	                        </li>
 	                        <li class="dropdown">
-	                        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>Mascotas <span class="caret"></span>
-	                            </a>
-	                        	<ul class="dropdown-menu">
-	                                <li>
-	                        			<a href="{{ Route('Mascotas.index') }}" class="dropdown-toggle" title="">Lista</a>
-	                                </li>
-	                                <li>
-	                        			<a href="{{ Route('Mascotas.create') }}" class="dropdown-toggle" title="">Crear</a>
-	                                </li>
-	                            </ul>
-	                        </li>
-	                        <li class="dropdown">
 	                        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>Vacunas <span class="caret"></span>
 	                            </a>
 	                        	<ul class="dropdown-menu">
@@ -179,14 +167,20 @@
 	                            </ul>
 	                        </li>
 	                        <li class="dropdown">
+	                        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>Mascotas <span class="caret"></span>
+	                            </a>
+	                        	<ul class="dropdown-menu">
+	                                <li>
+	                        			<a href="{{ Route('Mascotas.index') }}" class="dropdown-toggle" title="">Lista</a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        <li class="dropdown">
 	                        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>Tratamientos <span class="caret"></span>
 	                            </a>
 	                        	<ul class="dropdown-menu">
 	                                <li>
 	                        			<a href="{{ Route('Tratamientos.index') }}" class="dropdown-toggle" title="">Lista</a>
-	                                </li>
-	                                <li>
-	                        			<a href="{{ Route('Tratamientos.create') }}" class="dropdown-toggle" title="">Crear</a>
 	                                </li>
 	                            </ul>
 	                        </li>

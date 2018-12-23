@@ -24,32 +24,9 @@ class TreatmentsController extends Controller
 
     public function index()
     {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        $tratamientos = Treatment::orderBy('created_at','DESC')->paginate(5);
+        return view('Tratamientos.lista')
+        ->with('tratamientos',$tratamientos);
     }
 
     public function destroy($id)

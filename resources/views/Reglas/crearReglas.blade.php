@@ -1,5 +1,6 @@
 @extends('layouts.my_app')
 @section('title') Reglas a crear! @stop
+@section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
 	<p class="text-center">Crear Reglas que el SE debe seguir para dar un tratamiento.</p>
