@@ -12,6 +12,8 @@ use App\Person;
 use App\Treatment;
 use App\Doctor;
 use App\User;
+use App\Rule;
+
 
 class TreatmentsController extends Controller
 {

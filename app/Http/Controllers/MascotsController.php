@@ -12,6 +12,7 @@ use App\Person;
 use App\Treatment;
 use App\Doctor;
 use App\User;
+use App\Rule;
 
 class MascotsController extends Controller
 {
@@ -32,6 +33,7 @@ class MascotsController extends Controller
 
     public function store(Request $request)
     {
+        // Registro de dueño
         $dueño = new Person;
         $dueño->firstname      = $request->firstname;
         $dueño->lastname       = $request->lastname;
@@ -39,7 +41,7 @@ class MascotsController extends Controller
         $dueño->telephone      = $request->telephone;
         $dueño->address        = $request->address;
         $dueño->save();
-
+        // Registro de mascota
         $mascota = new Mascot;
         $mascota->name         =  $request->name;
         $mascota->weight       =  $request->weight;
@@ -52,13 +54,26 @@ class MascotsController extends Controller
         $mascota->symptoms()->sync($request->symptoms);
         $mascota->vaccines()->sync($request->vaccines);
 
+        // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo doctor. Voy a comparar los datos de la mascota con las reglas y si consuerda se crea un nuevo tratamiento asociado a la mascota especificada.
+        
+        $tratamiento = new Treatment;
+        $tratamiento->name = 'Tratamiento para '.$mascota->name;
+        $tratamiento->description = '?';
+        // $tratamiento->mascot()->associate($mascota);
+        $tratamiento->mascot_id = $mascota->id;
+
+        if (\Auth::user()->Doctor) {
+            $tratamiento->doctor_id = \Auth::user()->Doctor->id;
+        }
+        $tratamiento->save();
+
         return redirect(route('mascotSearch'));
     }
 
     public function mascotSearch(Request $request){
         // dd($request->search);
         
-        $mascotas = Mascot::orderBy('name','ASC')->mascota($request->search)->paginate(10);
+        $mascotas = Mascot::orderBy('created_at','DESC')->mascota($request->search)->paginate(10);
 
         return view('tratamiento')->with('mascotas',$mascotas);
     }

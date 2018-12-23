@@ -7,7 +7,7 @@
     <link href="{{ asset('chosen/chosen.css') }}" rel="stylesheet">
 
 </head>
-<body>
+<body style="background-image: url('{{ asset('img/fondo1.jpg') }}');">
 	<div class="container">
 		<div class="row">
 			@yield('content')

@@ -15,5 +15,13 @@ class Race extends Model
     public function mascot(){
     	return $this->hasOne(Mascot::class);
     }
+
+    // public function rule(){
+    // 	return $this->belongsTo(Rule::class);
+    // }
+
+    public function rule(){
+        return $this->hasMany(Rule::class);
+    }
     
 }

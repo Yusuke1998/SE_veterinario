@@ -5,6 +5,15 @@
 	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
 </div>
 <div class="col-md-12">
+	<style>
+		label
+		{
+			background-color: lightblue;
+			border-radius: 4%;
+			padding: 5px;
+			color: #fffff9;
+		}
+	</style>
 	<p class="text-center">Ingresa abajo tus datos personales y los de tu mascota!</p>
 	<form action="{{ route('Mascota.store') }}" method="POST">
 		{{  csrf_field()  }}

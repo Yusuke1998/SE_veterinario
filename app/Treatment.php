@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Treatment extends Model
 {
     protected $fillable = ['name','description','mascot_id','doctor_id'];
@@ -12,7 +13,7 @@ class Treatment extends Model
     	return $this->belongsTo(Mascot::class);
     }
 
-    // public function scopeTratamientos($query){
-    //     $query->where('name','queso');
-    // }
+    public function doctor(){
+    	return $this->belongsTo(Doctor::class);
+    }
 }
