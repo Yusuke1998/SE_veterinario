@@ -17,7 +17,9 @@ use App\Rule;
 
 class TreatmentsController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
     public function index()
@@ -37,8 +39,7 @@ class TreatmentsController extends Controller
 
     public function show($id)
     {
-        $tratamiento = Treatment::find($id);
-        return view('mascotaTratamiento')->with('tratamiento',$tratamiento);
+        //
     }
 
     public function edit($id)

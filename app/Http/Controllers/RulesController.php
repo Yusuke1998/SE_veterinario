@@ -16,6 +16,11 @@ use App\Rule;
 
 class RulesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $reglas = Rule::all();
