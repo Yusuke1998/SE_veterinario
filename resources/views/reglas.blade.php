@@ -2,7 +2,7 @@
 @section('title') Todas las Reglas disponibles! @stop
 @section('content')
 <div class="col-md-12">
-	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
+	<p class="text-center">Crea las reglas que el SE debe seguir para dar un tratamiento!</p>
 </div>
 <style>
 	td{

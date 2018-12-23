@@ -2,7 +2,6 @@
 @section('title') Mascotas! @stop
 @section('content')
 <div class="col-md-12">
-	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
 	<p class="text-center">Busca tu mascota y visualiza el tratamiento recomendado.</p>
 </div>
 <div class="col-md-8">

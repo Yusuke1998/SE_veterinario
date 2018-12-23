@@ -1,5 +1,5 @@
 @extends('layouts.my_app')
-@section('title') Consulta sobre tu mascota! @stop
+@section('title') SE-VETERINARIO @stop
 @section('content')
 <div class="col-md-12">
 	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
