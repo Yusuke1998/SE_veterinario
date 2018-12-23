@@ -12,7 +12,10 @@ class CreateMascotsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('weight');
+            $table->enum('weight_type',['Gramos','Kilogramos','Toneladas']);
             $table->integer('age');
+            $table->enum('age_type',['Dias','Semanas','Meses','Años']);
+
 
             $table->integer('animal_id')->unsigned();
             $table->integer('race_id')->unsigned()->nullable();

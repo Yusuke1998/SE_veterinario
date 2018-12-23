@@ -4,7 +4,7 @@
 <div class="col-md-12">
 	<p class="text-center">Visualiza o imprime el tratamiento recomendado.</p>
 </div>
-<div class="col-md-8">
+<div class="col-md-12">
 	<div class="panel">
 		<div class="panel-title">
 			<p class="h4">{{ $tratamiento->name }}</p>
@@ -28,8 +28,8 @@
 						<td>{{ $tratamiento->mascot->name }}</td>
 						<td>{{ $tratamiento->mascot->animal->name }}</td>
 						<td>{{ $tratamiento->mascot->race->name }}</td>
-						<td>{{ $tratamiento->mascot->age }}</td>
-						<td>{{ $tratamiento->mascot->weight }}Kg</td>
+						<td>{{ $tratamiento->mascot->age }}&nbsp{{ $tratamiento->mascot->age_type }}</td>
+						<td>{{ $tratamiento->mascot->weight }}&nbsp{{ $tratamiento->mascot->weight_type }}</td>
 						<td>
 							{{-- {{ count( $tratamiento->mascot->vaccines) }} --}}
 							@foreach($tratamiento->mascot->vaccines as $vaccine)
@@ -61,19 +61,5 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div style="background-image: url('{{ asset('img/huellas.jpg') }}'); background-size: 100%; color: white; padding: 10px;" class="col-md-4">
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 @stop

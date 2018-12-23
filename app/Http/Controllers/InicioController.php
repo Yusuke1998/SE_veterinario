@@ -49,7 +49,10 @@ class InicioController extends Controller
         $mascota = new Mascot;
         $mascota->name         =  $request->name;
         $mascota->weight       =  $request->weight;
+        $mascota->weight_type  =  $request->weight_type;
         $mascota->age          =  $request->age;
+        $mascota->age_type     =  $request->age_type;
+
         $mascota->animal_id    =  $request->animal_id;
         $mascota->race_id      =  $request->race_id;
         $mascota->person()->associate($dueño);
@@ -66,32 +69,43 @@ class InicioController extends Controller
         foreach ($reglas as $regla) {
             // dd($regla);
             if ($mascota->animal_id == $regla->animal_id && $mascota->race_id == $regla->race_id) {
-                if ($mascota->weight >= $regla->weight_1 && $mascota->weight <= $regla->weight_2) {
-                    if ($mascota->age >= $regla->age_1 && $mascota->age <= $regla->age_2) {
+                
+                if ($mascota->weight_type == $regla->weight_type_1 || $mascota->weight_type == $regla->weight_type_1 ) {
 
-                        if ($mascota->symptoms) {
-                            foreach ($mascota->symptoms as $symptom) {
-                                if ($symptom->id == $regla->symptom_id) {
+                    if ($mascota->weight >= $regla->weight_1 && $mascota->weight <= $regla->weight_2) {
 
-                                    // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo doctor. Voy a comparar los datos de la mascota con las reglas y si consuerda se crea un nuevo tratamiento asociado a la mascota especificada.
-                                        $tratamiento = new Treatment;
-                                        $tratamiento->name = 'Tratamiento para '.$mascota->name;
-                                        $tratamiento->description = $regla->treatment;
-                                        $tratamiento->mascot_id = $mascota->id;
-                                        if (\Auth::user()) {
-                                            if (\Auth::user()->Doctor) {
-                                                $tratamiento->doctor_id = \Auth::user()->Doctor->id;
+                        if ($mascota->age_type == $regla->age_type_1 || $mascota->age_type == $regla->age_type_2) {
+
+                            if ($mascota->age >= $regla->age_1 && $mascota->age <= $regla->age_2) {
+
+                                if ($mascota->symptoms) {
+                                   
+                                    foreach ($mascota->symptoms as $symptom) {
+                                   
+                                        if ($symptom->id == $regla->symptom_id) {
+                                            // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo doctor. Voy a comparar los datos de la mascota con las reglas y si consuerda se crea un nuevo tratamiento asociado a la mascota especificada.
+                                                $tratamiento = new Treatment;
+                                                $tratamiento->name = 'Tratamiento para '.$mascota->name;
+                                                $tratamiento->description = $regla->treatment;
+                                                $tratamiento->mascot_id = $mascota->id;
+                                                
+                                                if (\Auth::user()) {
+                                                
+                                                    if (\Auth::user()->Doctor) {
+                                                        $tratamiento->doctor_id = \Auth::user()->Doctor->id;
+                                                        $tratamiento->save();
+
+                                                    }
+                                                }
+                                            
                                                 $tratamiento->save();
-
                                             }
                                         }
-                                    
-                                        $tratamiento->save();
                                     }
                                 }
                             }
                         }
-                    }
+                    }    
                 }
             }
         return redirect(route('mascotSearch'));

@@ -8,7 +8,7 @@ class Rule extends Model
 {
     protected $fillable = [
     	'title','description','treatment','weight_1','weight_2',
-    	'symptom_id','animal_id','race_id','doctor_id'
+    	'symptom_id','animal_id','race_id','doctor_id','weight_type_1','weight_type_2','age_type_1','age_type_2'
     ];
 
     public function doctor(){

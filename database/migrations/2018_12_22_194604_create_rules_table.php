@@ -14,12 +14,17 @@ class CreateRulesTable extends Migration
             $table->string('description');
             $table->string('treatment');
             $table->integer('age_1');
+            $table->enum('age_type_1',['Dias','Semanas','Meses','Años']);
             $table->integer('age_2');
+            $table->enum('age_type_2',['Dias','Semanas','Meses','Años']);
             $table->float('weight_1');
+            $table->enum('weight_type_1',['Gramos','Kilogramos','Toneladas']);
             $table->float('weight_2');
-            $table->integer('doctor_id')->unsigned();
+            $table->enum('weight_type_2',['Gramos','Kilogramos','Toneladas']);
+
+            $table->integer('doctor_id')->unsigned()->nullable();
             $table->integer('animal_id')->unsigned();
-            $table->integer('race_id')->unsigned();
+            $table->integer('race_id')->unsigned()->nullable();
             $table->integer('symptom_id')->unsigned();
 
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');

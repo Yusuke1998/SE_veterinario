@@ -64,12 +64,23 @@
 					Ingresa aqui el Peso.
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: '10'" name="weight">
+				<select class="form-control" name="weight_type">
+					<option value="Gramos">Gramos</option>
+					<option value="Kilogramos">Kilogramos</option>
+					<option value="Toneladas">Toneladas</option>
+				</select>
 			</div>
 			<div class="form-group col-md-6">
 				<label class="">
 					Ingresa aqui la Edad.
 				</label>
 				<input class="form-control" type="text" placeholder="Ejemplo: '5'" name="age">
+				<select class="form-control" name="age_type">
+					<option value="Dias">Dias</option>
+					<option value="Semanas">Semanas</option>
+					<option value="Meses">Meses</option>
+					<option value="Años">Años</option>
+				</select>
 			</div>
 			<div class="form-group col-md-6">
 				<label class="">
