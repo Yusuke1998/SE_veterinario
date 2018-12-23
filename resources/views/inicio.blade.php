@@ -19,7 +19,7 @@
 	<form action="{{ route('Mascota.store') }}" method="POST">
 		{{  csrf_field()  }}
 		<div class="col-md-5">
-			<p class="h2 text-center">DUEÑO</p>
+			<p class="h2 text-center">PERSONA</p>
 			<div class="form-group col-md-6">
 				<label class="">
 					Nombres

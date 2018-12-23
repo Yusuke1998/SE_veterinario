@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Person;
 
 class PeopleController extends Controller
 {
@@ -14,36 +15,13 @@ class PeopleController extends Controller
 
     public function index()
     {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+        $personas = Person::orderBy('created_at','DESC')->paginate(10);
+        return view('Personas.listar')->with('personas',$personas);
     }
 
     public function destroy($id)
     {
-        //
+        $personas = Person::find($id)->delete();
+        return redirect(Route('Personas.index'));
     }
 }

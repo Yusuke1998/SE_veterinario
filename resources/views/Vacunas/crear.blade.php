@@ -28,7 +28,9 @@
 			<textarea placeholder="Elimina el virus de la rabia en diversos animales..." class="form-control" name="description"></textarea>
 		</div>
 
-		<input class="form-control btn btn-success" type="submit" name="btn" value="Enviar">
+		<div class="form-group col-md-12">
+			<input class="form-control btn btn-success" type="submit" name="btn" value="Enviar">
+		</div>
 	</form>
 </div>
 @stop

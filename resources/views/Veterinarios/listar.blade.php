@@ -1,9 +1,9 @@
 @extends('layouts.my_app')
-@section('title') Todas las Usuarios disponibles! @stop
+@section('title') Todos los doctores disponibles! @stop
 @section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
-	<p class="text-center">Todos las Usuarios!</p>
+	<p class="text-center">Todos los doctores!</p>
 </div>
 <style>
 	td{
@@ -15,22 +15,27 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>Nombre de usuario</th>
+				<th>Nombres</th>
+				<th>Apellidos</th>
 				<th>Correo electronico</th>
-				<th>Tipo</th>
+				<th>Telefono</th>
+				<th>Direccion</th>
+				<th>Usuario</th>
 				<th>Accion</th>
 			</tr>
 		</thead>
 		<tbody>
-			@forelse($usuarios as $usuario)
+			@forelse($doctores as $doctor)
 			<tr>
-				<td>{{ $usuario->username }}</td>
-				<td>{{ $usuario->email }}</td>
-				<td>{!! ($usuario->is_admin)?'Administrador':'Normal' !!}</td>
+				<td>{{ $doctor->firstname }}</td>
+				<td>{{ $doctor->lastname }}</td>
+				<td>{{ $doctor->email }}</td>
+				<td>{{ $doctor->telephone }}</td>
+				<td>{{ $doctor->address }}</td>
+				<td>{{ ($doctor->user)?$doctor->user->username:'No posee usuario' }}</td>
 				<td>
 					<div class="btn-group">
-						<a class="btn btn-info btn-sm" href="{{ Route('Usuarios.edit',$usuario->id) }}" title="Editar este usuario">Editar</a>
-						<form action="{{ route('Usuarios.destroy',$usuario->id) }}" method="POST">
+						<form action="{{ route('Veterinarios.destroy',$doctor->id) }}" method="POST">
 							{{  csrf_field()  }}
 							<input type="hidden" name="_method" value="DELETE">
 							<input class="btn btn-info btn-sm" onclick="return confirm('Seguro?')" title="Eliminar este usuario" type="submit" name="" value="Eliminar">
@@ -44,7 +49,7 @@
 			@endforelse
 	</table>
 	<div class="text-center">
-		{{ $usuarios->render() }}
+		{{ $doctores->render() }}
 	</div>
 </div>
 @stop

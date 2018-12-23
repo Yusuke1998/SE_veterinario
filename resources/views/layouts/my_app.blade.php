@@ -111,9 +111,6 @@
 		                                <li>
 		                        			<a href="{{ Route('Personas.index') }}" class="dropdown-toggle" title="">Lista</a>
 		                                </li>
-		                                <li>
-		                        			<a href="{{ Route('Personas.create') }}" class="dropdown-toggle" title="">Crear</a>
-		                                </li>
 		                            </ul>
 		                        </li>
 	                    	@endif
