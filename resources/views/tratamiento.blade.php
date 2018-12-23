@@ -35,8 +35,8 @@
 					@forelse($mascotas as $mascota)
 					<tr>
 						<td>{{ $mascota->name }}</td>
-						<td>{{ $mascota->age }}</td>
-						<td>{{ $mascota->weight }}</td>
+						<td>{{ $mascota->age }}&nbsp{{ $mascota->age_type }}</td>
+						<td>{{ $mascota->weight }}&nbsp{{ $mascota->weight_type }}</td>
 						<td>{{ $mascota->animal->name }}</td>
 						<td>{{ $mascota->race->name }}</td>
 						<td>{{ $mascota->person->firstname }}</td>
