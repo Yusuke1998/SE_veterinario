@@ -2,9 +2,7 @@
 @section('title') SE-VETERINARIO @stop
 @section('title_nav') SE @stop
 @section('content')
-<div class="col-md-12">
-	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
-</div>
+
 <div class="col-md-12">
 	<style>
 		label

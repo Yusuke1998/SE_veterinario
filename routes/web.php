@@ -2,7 +2,11 @@
 Auth::routes();
 
 // No requiere iniciar session para entrar
-Route::get('/', 'InicioController@index')->name('inicio');
+
+Route::get('/',function(){
+	return view('index');
+});
+Route::get('/registro', 'InicioController@index')->name('inicio');
 Route::get('/Mascotas', 'InicioController@mascotSearch')->name('mascotSearch');
 Route::get('/Tratamiento/{id}','InicioController@show')->name('Tratamiento.show');
 Route::post('/Mascota','InicioController@store')->name('Mascota.store');

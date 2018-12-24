@@ -6,7 +6,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('chosen/chosen.css') }}" rel="stylesheet">
 </head>
-<body style="background-image: url('{{ asset('img/fondo1.jpg') }}');">
+<body style="background-image: url('{{ asset('img/fondo.jpg') }}');">
 	@guest
 		<nav class="navbar navbar-default navbar-static-top">
 	        <div class="container">

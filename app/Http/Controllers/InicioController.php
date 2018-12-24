@@ -67,7 +67,7 @@ class InicioController extends Controller
         $reglas = Rule::all();
 
         foreach ($reglas as $regla) {
-            // dd($regla);
+            
             if ($mascota->animal_id == $regla->animal_id && $mascota->race_id == $regla->race_id) {
                 
                 if ($mascota->weight_type == $regla->weight_type_1 || $mascota->weight_type == $regla->weight_type_1 ) {
@@ -83,7 +83,7 @@ class InicioController extends Controller
                                     foreach ($mascota->symptoms as $symptom) {
                                    
                                         if ($symptom->id == $regla->symptom_id) {
-                                            // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo doctor. Voy a comparar los datos de la mascota con las reglas y si consuerda se crea un nuevo tratamiento asociado a la mascota especificada.
+                                            // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo veterinario. Voy a comparar los datos de la mascota con las reglas y si concuerdan se crea un nuevo tratamiento asociado a la mascota especificada.
                                                 $tratamiento = new Treatment;
                                                 $tratamiento->name = 'Tratamiento para '.$mascota->name;
                                                 $tratamiento->description = $regla->treatment;
@@ -94,7 +94,6 @@ class InicioController extends Controller
                                                     if (\Auth::user()->Doctor) {
                                                         $tratamiento->doctor_id = \Auth::user()->Doctor->id;
                                                         $tratamiento->save();
-
                                                     }
                                                 }
                                             
