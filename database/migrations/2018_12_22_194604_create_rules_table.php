@@ -25,12 +25,10 @@ class CreateRulesTable extends Migration
             $table->integer('doctor_id')->unsigned()->nullable();
             $table->integer('animal_id')->unsigned();
             $table->integer('race_id')->unsigned()->nullable();
-            $table->integer('symptom_id')->unsigned();
 
             $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');
             $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade');
-            $table->foreign('symptom_id')->references('id')->on('symptoms')->onDelete('cascade');
 
             $table->timestamps();
         });

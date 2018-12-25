@@ -20,7 +20,7 @@
 				<th>Tratamiento</th>
 				<th>Animal</th>
 				<th>Raza</th>
-				<th>Sintoma</th>
+				<th>Sintoma(s)</th>
 				<th>Peso</th>
 				<th>Edad</th>
 				<th>Accion</th>
@@ -34,7 +34,13 @@
 				<td>{{ $regla->treatment }}</td>
 				<td>{{ $regla->animal->name }}</td>
 				<td>{{ $regla->race->name }}</td>
-				<td>{{ $regla->symptom->name }}</td>
+				<td>
+					@if($regla->symptoms)
+						@foreach($regla->symptoms as $symptom)
+							<li>{{ $symptom->name }}.</li>
+						@endforeach
+					@endif
+				</td>
 				<td>({{ $regla->weight_1 }}&nbsp{{ $regla->weight_type_1 }}) hasta ({{ $regla->weight_2 }}&nbsp{{ $regla->weight_type_2 }})</td>
 				<td>({{ $regla->age_1 }}&nbsp{{ $regla->age_type_1 }}) hasta ({{ $regla->age_2 }}&nbsp{{ $regla->age_type_2 }})</td>
 				<td>

@@ -56,11 +56,11 @@
 			</label>
 			<input class="form-control" type="text" placeholder="Ejemplo: minimo '1'" name="age_1">
 			<select class="form-control" name="age_type_1">
-					<option value="Dias">Dias</option>
-					<option value="Semanas">Semanas</option>
-					<option value="Meses">Meses</option>
-					<option value="Años">Años</option>
-				</select>
+				<option value="Dias">Dias</option>
+				<option value="Semanas">Semanas</option>
+				<option value="Meses">Meses</option>
+				<option value="Años">Años</option>
+			</select>
 			<input class="form-control" type="text" placeholder="Ejemplo: maximo '20'" name="age_2">
 			<select class="form-control" name="age_type_2">
 					<option value="Dias">Dias</option>
@@ -89,7 +89,7 @@
 			<label class="">
 				Ingresa aqui los sintomas.
 			</label>
-			<select class="form-control my_select_2" multiple name="symptom_id[]">
+			<select class="form-control my_select_2" multiple name="symptoms[]">
 				@foreach($sintomas as $sintoma)
 					<option value="{{ $sintoma->id }}">{{ $sintoma->name }}</option>
 				@endforeach

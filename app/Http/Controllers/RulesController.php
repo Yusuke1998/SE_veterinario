@@ -55,15 +55,20 @@ class RulesController extends Controller
         $regla->weight_type_1 = $request->weight_type_1;
         $regla->weight_2 = $request->weight_2;
         $regla->weight_type_2 = $request->weight_type_2;
+
         if (\Auth::user()->Doctor) {
             $regla->doctor_id = \Auth::user()->Doctor->id;
         }else{
             $regla->doctor_id = '1';
         }
+        
         $regla->animal_id = $request->animal_id;
         $regla->race_id = $request->race_id;
-        $regla->symptom_id = $request->symptom_id;
         $regla->save();
+
+        // dd($request->symptoms);
+        $regla->symptoms()->sync($request->symptoms);
+
 
         return redirect(route('Reglas.index'));
     }
@@ -102,8 +107,9 @@ class RulesController extends Controller
         }
         $regla->animal_id = $request->animal_id;
         $regla->race_id = $request->race_id;
-        $regla->symptom_id = $request->symptom_id;
+        
         $regla->save();
+        $regla->symptoms()->sync($request->symptoms);
 
         return redirect(Route('Reglas.index'));
     }

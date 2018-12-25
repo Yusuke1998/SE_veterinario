@@ -7,16 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Rule extends Model
 {
     protected $fillable = [
-    	'title','description','treatment','weight_1','weight_2',
-    	'symptom_id','animal_id','race_id','doctor_id','weight_type_1','weight_type_2','age_type_1','age_type_2'
+    	'title','description','treatment','weight_1','weight_2','animal_id','race_id','doctor_id','weight_type_1','weight_type_2','age_type_1','age_type_2'
     ];
 
     public function doctor(){
     	return $this->belongsTo(Doctor::class);
-    }
-
-    public function symptom(){
-    	return $this->belongsTo(Symptom::class);
     }
 
     public function animal(){
@@ -25,5 +20,9 @@ class Rule extends Model
 
     public function race(){
     	return $this->belongsTo(Race::class);
+    }
+
+    public function symptoms(){
+        return $this->belongsToMany(Symptom::class);
     }
 }
