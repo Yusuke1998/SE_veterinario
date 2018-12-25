@@ -32,23 +32,13 @@
 						<td>{{ $tratamiento->mascot->age }}&nbsp{{ $tratamiento->mascot->age_type }}</td>
 						<td>{{ $tratamiento->mascot->weight }}&nbsp{{ $tratamiento->mascot->weight_type }}</td>
 						<td>
-							{{-- {{ count( $tratamiento->mascot->vaccines) }} --}}
 							@foreach($tratamiento->mascot->vaccines as $vaccine)
-								@if(count( $tratamiento->mascot->vaccines)>1)
-									{{ $vaccine->name }},
-								@else
-									{{ $vaccine->name }}.
-								@endif
+								<li>{{ $vaccine->name }}.</li>
 							@endforeach
 						</td>
 						<td>
-							{{-- {{ count( $tratamiento->mascot->symptoms) }} --}}
 							@foreach($tratamiento->mascot->symptoms as $symptom)
-								@if(count( $tratamiento->mascot->symptoms)>1)
-									{{ $symptom->name }},
-								@else
-									{{ $symptom->name }}.
-								@endif
+								<li>{{ $symptom->name }}.</li>
 							@endforeach
 						</td>
 					</tr>
