@@ -87,9 +87,9 @@
 		</div>
 		<div class="form-group col-md-6">
 			<label class="">
-				Ingresa aqui el sintoma.
+				Ingresa aqui los sintomas.
 			</label>
-			<select class="form-control my_select_2" name="symptom_id">
+			<select class="form-control my_select_2" multiple name="symptom_id[]">
 				@foreach($sintomas as $sintoma)
 					<option value="{{ $sintoma->id }}">{{ $sintoma->name }}</option>
 				@endforeach
