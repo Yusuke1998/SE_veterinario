@@ -63,16 +63,16 @@
 					<label class="col-md-12">
 						Tipo y Raza.
 					</label>
-					<select class="my_select_1" name="animal_id">
+					<select class="my_select_1"  id="animal_id" name="animal_id">
 						@foreach($animales as $animal)
 							<option value="{{ $animal->id }}">{{ $animal->name }}</option>
 						@endforeach
 					</select>
-					<select class="my_select_1" name="race_id">
-						<option value="">No aplica</option>
-						@foreach($razas as $raza)
+					<select class="my_select_11" id="race_id" name="race_id">
+						<option value="">Otro</option>
+						{{-- @foreach($razas as $raza)
 							<option value="{{ $raza->id }}">{{ $raza->name }}</option>
-						@endforeach
+						@endforeach --}}
 					</select>
 				</div>
 			</div>
@@ -151,4 +151,19 @@
 	    width: "100%",
 	    placeholder_text_multiple: 'Selecciona'
 	});
+
+	$('#animal_id').on('change',function(e){
+		console.log(e);
+		var animal_id = e.target.value;
+
+		//ajax
+		$.get('/ajax-animal?animal_id=' + animal_id, function(data){
+			//success data
+			$('#race_id').empty();
+			$.each(data, function(index, razaObj){
+				$('#race_id').append('<option value="'+razaObj.id+'">'+razaObj.name+'</option>');
+			});
+		});
+	});
+
 @stop

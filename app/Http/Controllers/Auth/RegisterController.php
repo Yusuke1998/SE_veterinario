@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/registro';
 
     /**
      * Create a new controller instance.
@@ -36,7 +36,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
+        // Para poder registrar se debe ser admin, lo hice asi porque los usuarios que van a hacer consultas por tratamiento no necesitan estar registrados
+        $this->middleware('admin');
     }
 
     /**

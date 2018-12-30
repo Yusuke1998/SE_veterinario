@@ -21,6 +21,7 @@
 						<th>Animal/Raza</th>
 						<th>Sintomas</th>
 						<th>Vacunas</th>
+						<th>Tratamiento</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -30,7 +31,13 @@
 							<td>{{ $mascota->weight }}&nbsp{{ $mascota->weight_type }}</td>
 							<td>{{ $mascota->age }}&nbsp{{ $mascota->age_type }}</td>
 							<td>{{ $mascota->person->firstname }}</td>
-							<td>{{ $mascota->animal->name }}/{{ $mascota->race->name }}</td>
+							<td>{{ $mascota->animal->name }}/
+								@if($mascota->race)
+									{{ $mascota->race->name }}
+								@else
+									No esta registrada!
+								@endif
+							</td>
 							<td>
 								@foreach($mascota->symptoms as $sintoma)
 									<li>{{ $sintoma->name }}</li>
@@ -40,6 +47,13 @@
 								@foreach($mascota->vaccines as $vacuna)
 									<li>{{ $vacuna->name }}</li>
 								@endforeach
+							</td>
+							<td>
+								@if(!$mascota->treatment)
+									<a href="{{ Route('Tratamientos.crear',$mascota->id) }}" title="Dar Tratamiento">Hacer</a>
+								@else
+									<a href="{{ Route('Tratamientos.show',$mascota->treatment->id) }}" title="Ver Tratamiento">Ver</a>
+								@endif
 							</td>
 						</tr>
 					@endforeach

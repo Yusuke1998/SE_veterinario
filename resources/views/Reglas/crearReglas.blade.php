@@ -79,7 +79,7 @@
 				@endforeach
 			</select>
 			<select class="my_select_1" name="race_id">
-				<option value="">No aplica</option>
+				<option value="">Otro</option>
 				@foreach($razas as $raza)
 					<option value="{{ $raza->id }}">{{ $raza->name }}</option>
 				@endforeach

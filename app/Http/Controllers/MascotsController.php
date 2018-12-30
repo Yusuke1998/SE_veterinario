@@ -30,6 +30,6 @@ class MascotsController extends Controller
 
     public function destroy($id)
     {
-        //
+        return back()->with('info','Mascota eliminada con exito!');
     }
 }

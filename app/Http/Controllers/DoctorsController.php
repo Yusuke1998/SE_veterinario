@@ -23,7 +23,7 @@ class DoctorsController extends Controller
     public function destroy($id)
     {
         $doctores = Doctor::find($id)->delete();
-        return redirect(Route('Veterinarios.index'));
+        return redirect(Route('Veterinarios.index')->with('info','Eliminado con exito!'));
     }
 
     public function create(){
@@ -48,6 +48,6 @@ class DoctorsController extends Controller
             'user_id'       =>  $usuario->id
         ]);
 
-        return redirect(Route('Veterinarios.index'));
+        return redirect(Route('Veterinarios.index'))->with('info',$request->firstname.' creado con exito!');
     }
 }

@@ -34,7 +34,7 @@ class UsersController extends Controller
             'is_admin'      =>  $request->is_admin
         ]);
 
-        return redirect(Route('Usuarios.index'));
+        return redirect(Route('Usuarios.index'))->with('info',$request->username.' Creado con exito!');
     }
 
     public function edit($id)
@@ -54,12 +54,12 @@ class UsersController extends Controller
             'is_admin'      =>  $request->is_admin
         ]);
 
-        return redirect(Route('Usuarios.index'));
+        return redirect(Route('Usuarios.index'))->with('info',$request->username.' actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $usuario = User::find($id)->delete();
-        return redirect(Route('Usuarios.index'));
+        return redirect(Route('Usuarios.index'))->with('info','Eliminado con exito!');
     }
 }

@@ -34,7 +34,7 @@ class RacesController extends Controller
     public function store(Request $request)
     {
         $raza = Race::create($request->all());
-        return redirect(Route('Razas.index'));
+        return redirect(Route('Razas.index'))->with('info',$request->name.' creado con exito!');
     }
 
     public function edit($id)
@@ -49,12 +49,12 @@ class RacesController extends Controller
     public function update(Request $request, $id)
     {
         $raza = Race::find($id)->update($request->all());
-        return redirect(Route('Razas.index'));
+        return redirect(Route('Razas.index'))->with('info',$request->name.' actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $raza = Race::find($id)->delete();
-        return redirect(Route('Razas.index'));
+        return redirect(Route('Razas.index'))->with('info','Eliminado con exito!');
     }
 }

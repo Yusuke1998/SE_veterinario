@@ -70,7 +70,7 @@ class RulesController extends Controller
         $regla->symptoms()->sync($request->symptoms);
 
 
-        return redirect(route('Reglas.index'));
+        return redirect(route('Reglas.index'))->with('info',$request->title.' creado con exito!');
     }
 
     public function edit($id)
@@ -111,7 +111,7 @@ class RulesController extends Controller
         $regla->save();
         $regla->symptoms()->sync($request->symptoms);
 
-        return redirect(Route('Reglas.index'));
+        return redirect(Route('Reglas.index'))->with('info',$regla->title.' actualizado con exito!');
     }
 
     public function destroy($id)
@@ -119,6 +119,6 @@ class RulesController extends Controller
         $regla = Rule::find($id);
         $regla->delete();
 
-        return redirect(Route('Reglas.index'));
+        return redirect(Route('Reglas.index'))->with('info',$regla->title.' eliminado con exito!');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.my_app')
-@section('title') Reglas a crear! @stop
+@section('title') Reglas a editar! @stop
 @section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
@@ -85,14 +85,21 @@
 				@endforeach
 			</select>
 			<select class="my_select_1" name="race_id">
-				<option selected value="{{ $regla->race->id }}">{{ $regla->race->name }}</option>
-				@foreach($razas as $raza)
-					@if($regla->race->id == $raza->id)
+				@if($regla->race)
+					<option selected value="{{ $regla->race->id }}">{{ $regla->race->name }}</option>
+					@foreach($razas as $raza)
+						@if($regla->race->id == $raza->id)
 
-					@else
+						@else
+							<option value="{{ $raza->id }}">{{ $raza->name }}</option>
+						@endif
+					@endforeach
+				@else
+					<option value="">Otro</option>}
+					@foreach($razas as $raza)
 						<option value="{{ $raza->id }}">{{ $raza->name }}</option>
-					@endif
-				@endforeach
+					@endforeach
+				@endif
 			</select>
 		</div>
 		<div class="form-group col-md-6">

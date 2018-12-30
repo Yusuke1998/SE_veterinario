@@ -27,7 +27,7 @@ class SymptomsController extends Controller
     public function store(Request $request)
     {
         $sintoma = Symptom::create($request->all());
-        return redirect(Route('Sintomas.index'));
+        return redirect(Route('Sintomas.index'))->with('info',$request->name.' creado con exito!');
     }
 
     public function edit($id)
@@ -40,12 +40,12 @@ class SymptomsController extends Controller
     public function update(Request $request, $id)
     {
         $sintoma = Symptom::find($id)->update($request->all());
-        return redirect(Route('Sintomas.index'));
+        return redirect(Route('Sintomas.index'))->with('info',$request->name.' actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $sintoma = Symptom::find($id)->delete();
-        return redirect(Route('Sintomas.index'));
+        return redirect(Route('Sintomas.index'))->with('info','Eliminado con exito!');
     }
 }

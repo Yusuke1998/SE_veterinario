@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Animal;
+use App\Race;
 
 class AnimalsController extends Controller
 {
@@ -27,7 +28,8 @@ class AnimalsController extends Controller
     public function store(Request $request)
     {
         $animal = Animal::create($request->all());
-        return redirect(Route('Animales.index'));
+        return redirect(Route('Animales.index'))
+        ->with('info',$request->name.' creado con exito!');
     }
 
     public function edit($id)
@@ -40,12 +42,12 @@ class AnimalsController extends Controller
     public function update(Request $request, $id)
     {
         $animal = Animal::find($id)->update($request->all());
-        return redirect(Route('Animales.index'));
+        return redirect(Route('Animales.index'))->with('info',$request->name.' actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $animal = Animal::find($id)->delete();
-        return redirect(Route('Animales.index'));
+        return redirect(Route('Animales.index'))->with('info','Eliminado con exito!');
     }
 }

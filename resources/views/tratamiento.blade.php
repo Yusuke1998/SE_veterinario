@@ -39,7 +39,13 @@
 						<td>{{ $mascota->age }}&nbsp{{ $mascota->age_type }}</td>
 						<td>{{ $mascota->weight }}&nbsp{{ $mascota->weight_type }}</td>
 						<td>{{ $mascota->animal->name }}</td>
-						<td>{{ $mascota->race->name }}</td>
+						<td>
+							@if($mascota->race)
+								{{ $mascota->race->name }}
+							@else
+								No esta registrada!
+							@endif
+						</td>
 						<td>{{ $mascota->person->firstname }}</td>
 						<td>
 							@if($mascota->treatment)

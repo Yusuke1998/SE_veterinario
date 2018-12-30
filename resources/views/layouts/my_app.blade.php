@@ -6,7 +6,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('chosen/chosen.css') }}" rel="stylesheet">
 </head>
-<body style="background-image: url('{{ asset('img/fondo.jpg') }}');">
+<style>
+	body
+	{
+		/*background: url('{{ asset('img/logo1.jpg') }}') no-repeat top center;*/
+	}
+</style>
+<body>
 	@guest
 		<nav class="navbar navbar-default navbar-static-top">
 	        <div class="container">
@@ -21,8 +27,9 @@
 	                </button>
 
 	                <!-- Branding Image -->
-	                <a class="navbar-brand" href="{{ url('/') }}">
-	                    @yield('title_nav','SE - Asistente Veterinario')
+	                <a class="navbar-brand-jjmm" href="{{ url('/registro') }}">
+	                    {{-- @yield('title_nav','SE - Asistente Veterinario') --}}
+	                    <img src="{{ asset('img/fondo1.jpg') }}" width="50px" alt="LOGO-SE">
 	                </a>
 	            </div>
 
@@ -40,6 +47,15 @@
                         	<ul class="dropdown-menu">
                                 <li>
                         			<a href="{{ Route('mascotSearch') }}" class="dropdown-toggle" title="">Lista</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>Informacion <span class="caret"></span>
+                            </a>
+                        	<ul class="dropdown-menu">
+                                <li>
+                        			<a href="{{ Route('acercade') }}" class="dropdown-toggle" title="">Acerca de</a>
                                 </li>
                             </ul>
                         </li>	                        
@@ -61,8 +77,9 @@
 	                </button>
 
 	                <!-- Branding Image -->
-	                <a class="navbar-brand" href="{{ url('/') }}">
-	                    @yield('title_nav','SE - Asistente Veterinario')
+	                <a class="navbar-brand-jjmm" href="{{ url('/registro') }}">
+	                    {{-- @yield('title_nav','SE - Asistente Veterinario') --}}
+	                    <img src="{{ asset('img/fondo1.jpg') }}" width="50px" alt="LOGO-SE">
 	                </a>
 	            </div>
 
@@ -223,7 +240,12 @@
 	@endguest
 	<div class="container">
 		<div class="row">
+			@include('layouts.status')
 			@yield('content')
+			@yield('content2')
+			<div class="col-md-12">
+				<a href="#" class="btn btn-info btn-sm" title="">Volver</a>
+			</div>
 		</div>
 	</div>
     <script src="{{ asset('js/app.js') }}"></script>

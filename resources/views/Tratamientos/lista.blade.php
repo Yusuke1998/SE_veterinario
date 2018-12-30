@@ -8,7 +8,7 @@
 <div class="col-md-12">
 	<div class="panel">
 		<div class="panel-title">
-			<p class="h4">Todos los tratamientos creados por el SE</p>
+			<p class="h4">Todos los tratamientos creados.</p>
 		</div>
 		<div class="panel-body">
 			<table class="table">
@@ -20,25 +20,35 @@
 						<th>Dueño</th>
 						<th>Animal/Raza</th>
 						<th>Sintomas</th>
-						<th>Veterinario</th>
+						<th>Veterinario/SE</th>
+						<th>Ver</th>
 					</tr>
 				</thead>
 				<tbody>
+				@foreach($tratamientos as $tratamiento)
 					<tr>
-						@foreach($tratamientos as $tratamiento)
-							<td>{{ $tratamiento->name }}</td>
-							<td>{{ $tratamiento->description }}</td>
-							<td>{{ $tratamiento->mascot->name }}</td>
-							<td>{{ $tratamiento->mascot->person->firstname }}</td>
-							<td>{{ $tratamiento->mascot->animal->name }}/{{ $tratamiento->mascot->race->name }}</td>
-							<td>
-								@foreach($tratamiento->mascot->symptoms as $sintoma)
-									<li>{{ $sintoma->name }}</li>
-								@endforeach
-							</td>
-							<td>{{ ($tratamiento->doctor)? $tratamiento->doctor->firstname : 'sin veterinario' }}</td>
-						@endforeach
+						<td>{{ $tratamiento->name }}</td>
+						<td>{{ $tratamiento->description }}</td>
+						<td>{{ $tratamiento->mascot->name }}</td>
+						<td>{{ $tratamiento->mascot->person->firstname }}</td>
+						<td>{{ $tratamiento->mascot->animal->name }}/
+							@if($tratamiento->mascot->race)
+								{{ $tratamiento->mascot->race->name }}
+							@else
+								No esta registrada!
+							@endif
+						</td>
+						<td>
+							@foreach($tratamiento->mascot->symptoms as $sintoma)
+								<li>{{ $sintoma->name }}</li>
+							@endforeach
+						</td>
+						<td>{{ ($tratamiento->doctor)? $tratamiento->doctor->firstname : 'S.E.' }}</td>
+						<td>
+							<a href="{{ Route('Tratamientos.show',$tratamiento->id) }}" title="Ver Tratamiento">Ver</a>
+						</td>
 					</tr>
+				@endforeach
 				</tbody>
 			</table>
 		</div>

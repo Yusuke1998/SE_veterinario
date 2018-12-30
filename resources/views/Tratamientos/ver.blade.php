@@ -1,9 +1,9 @@
 @extends('layouts.my_app')
-@section('title') Tratamiento a seguir! @stop
+@section('title') {{ $tratamiento->name }}! @stop
 @section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
-	<p class="text-center">Visualiza o imprime el tratamiento recomendado.</p>
+	<p class="text-center">Visualiza o imprime el tratamiento.</p>
 </div>
 <div class="col-md-12">
 	<div class="panel">
@@ -11,7 +11,11 @@
 			<p class="h3">{{ $tratamiento->name }}</p>
 		</div>
 		<div class="panel-body">
-			<p class="h4 text-center">{{ $tratamiento->description }}</p>
+			<p class="h4">
+				{{ $tratamiento->description }}
+			</p>
+		</div>
+		<div class="panel-body">
 			<table class="table">
 				<thead>
 					<tr>
@@ -29,7 +33,7 @@
 						<td>{{ $tratamiento->mascot->name }}</td>
 						<td>{{ $tratamiento->mascot->animal->name }}</td>
 						<td>
-							@if(!empty($tratamiento->mascot->race) && isset($tratamiento->mascot->race))
+							@if($tratamiento->mascot->race)
 								{{ $tratamiento->mascot->race->name }}
 							@else
 								No esta registrada!

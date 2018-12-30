@@ -27,7 +27,7 @@ class VaccinesController extends Controller
     public function store(Request $request)
     {
         $vacuna = Vaccine::create($request->all());
-        return redirect(Route('Vacunas.index'));
+        return redirect(Route('Vacunas.index'))->with('info',$request->name.' creado con exito!');
     }
 
     public function edit($id)
@@ -40,12 +40,12 @@ class VaccinesController extends Controller
     public function update(Request $request, $id)
     {
         $vacuna = Vaccine::find($id)->update($request->all());
-        return redirect(Route('Vacunas.index'));
+        return redirect(Route('Vacunas.index'))->with('info',$request->name.' actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $vacuna = Vaccine::find($id)->delete();
-        return redirect(Route('Vacunas.index'));
+        return redirect(Route('Vacunas.index'))->with('info','Eliminado con exito!');
     }
 }

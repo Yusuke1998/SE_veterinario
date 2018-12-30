@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\InicioFormRequest;
+
 use App\Animal;
 use App\Race;
 use App\Vaccine;
@@ -30,7 +32,7 @@ class InicioController extends Controller
         ->with('sintomas',$sintomas);
     }
 
-    public function store(Request $request)
+    public function store(InicioFormRequest $request)
     {
         // <---------------------------------------------------------------------------------->
 
@@ -67,47 +69,53 @@ class InicioController extends Controller
         $reglas = Rule::all();
 
         foreach ($reglas as $regla) {
-            
+                        
             if ($mascota->animal_id == $regla->animal_id && $mascota->race_id == $regla->race_id) {
                 
-                if ($mascota->weight_type == $regla->weight_type_1 || $mascota->weight_type == $regla->weight_type_1 ) {
+                if( count($mascota->symptoms()->get()) == count($regla->symptoms()->get()) ) {
 
-                    if ($mascota->weight >= $regla->weight_1 && $mascota->weight <= $regla->weight_2) {
+                    if ($mascota->weight_type == $regla->weight_type_1 || $mascota->weight_type == $regla->weight_type_2 ) {
 
-                        if ($mascota->age_type == $regla->age_type_1 || $mascota->age_type == $regla->age_type_2) {
+                        if ($mascota->weight >= $regla->weight_1 && $mascota->weight <= $regla->weight_2) {
 
-                            if ($mascota->age >= $regla->age_1 && $mascota->age <= $regla->age_2) {
+                            if ($mascota->age_type == $regla->age_type_1 || $mascota->age_type == $regla->age_type_2) {
 
-                                if ($mascota->symptoms) {
-                                   
-                                    foreach ($mascota->symptoms as $symptom) {
-                                   
-                                        if ($symptom->id == $regla->symptom_id) {
-                                            // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo veterinario. Voy a comparar los datos de la mascota con las reglas y si concuerdan se crea un nuevo tratamiento asociado a la mascota especificada.
-                                                $tratamiento = new Treatment;
-                                                $tratamiento->name = 'Tratamiento para '.$mascota->name;
-                                                $tratamiento->description = $regla->treatment;
-                                                $tratamiento->mascot_id = $mascota->id;
-                                                
-                                                if (\Auth::user()) {
-                                                
-                                                    if (\Auth::user()->Doctor) {
-                                                        $tratamiento->doctor_id = \Auth::user()->Doctor->id;
-                                                        $tratamiento->save();
-                                                    }
-                                                }
-                                            
+                                if ($mascota->age >= $regla->age_1 && $mascota->age <= $regla->age_2) {
+                                    #Se ordenan los sintomas de las colecciones por edad y se convierten en arrays
+                                    $regla_s = $regla->symptoms;
+                                    $mascota_s = $mascota->symptoms;
+
+                                    $diff = $regla_s->diff($mascota_s->all());
+                                    // dd($diff->all());
+                                    if ($diff == '[]'){
+
+                                        // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo veterinario. Voy a comparar los datos de la mascota con las reglas y si concuerdan se crea un nuevo tratamiento asociado a la mascota especificada.
+
+                                        $tratamiento = new Treatment;
+                                        $tratamiento->name = 'Tratamiento para '.$mascota->name;
+                                        $tratamiento->description = $regla->treatment;
+                                        $tratamiento->mascot_id = $mascota->id;
+                                        
+                                        if (\Auth::user()) {
+                                        
+                                            if (\Auth::user()->Doctor) {
+                                                $tratamiento->doctor_id = \Auth::user()->Doctor->id;
                                                 $tratamiento->save();
                                             }
                                         }
+
+                                        $tratamiento->save();
+                                        return redirect(route('mascotSearch'))->with('info','Mascota y tratamiento creado con exito!');
                                     }
-                                }
-                            }
-                        }
-                    }    
-                }
-            }
-        return redirect(route('mascotSearch'));
+
+                                } #Aqui cierrar la comparacion de edad
+                            } #Aqui cierrar la comparacion de tipo de edad 
+                        } #Aqui cierrar la comparacion de peso  
+                    } #Aqui cierrar la comparacion de tipo de peso    
+                } #Aqui cierra la comparacion de catidad de sintomas
+            } #Aqui cierra animal y raza comparacion con regla
+        } #Aqui cierra el foreach
+        return back()->with('info','Mascota creada con exito y en espera de Tratamiento!');
     }
         
     // <---------------------------------------------------------------------------------->
@@ -124,5 +132,17 @@ class InicioController extends Controller
         
         $mascotas = Mascot::orderBy('created_at','DESC')->mascota($request->search)->paginate(10);
         return view('tratamiento')->with('mascotas',$mascotas);
+    }
+
+    public function ajax(Request $request){
+
+        if($request->ajax()){
+            
+            $animal_id = $request->animal_id;
+            
+            $raza = Race::where('animal_id','=',$animal_id)->get();
+            
+            return response()->json($raza);
+        }
     }
 }

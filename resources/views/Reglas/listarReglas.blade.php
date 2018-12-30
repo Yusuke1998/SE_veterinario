@@ -33,7 +33,13 @@
 				<td>{{ $regla->description }}</td>
 				<td>{{ $regla->treatment }}</td>
 				<td>{{ $regla->animal->name }}</td>
-				<td>{{ $regla->race->name }}</td>
+				<td>
+					@if($regla->race)
+						{{ $regla->race->name }}
+					@else
+						No esta registrada!
+					@endif
+				</td>
 				<td>
 					@if($regla->symptoms)
 						@foreach($regla->symptoms as $symptom)

@@ -29,7 +29,7 @@ class LoginController extends Controller
     {
         return 'username';
     }
-    protected $redirectTo = '/';
+    protected $redirectTo = '/registro';
 
     /**
      * Create a new controller instance.
