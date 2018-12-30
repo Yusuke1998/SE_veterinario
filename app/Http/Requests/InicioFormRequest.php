@@ -30,9 +30,9 @@ class InicioFormRequest extends FormRequest
             'age'               => 'required',
             'age_type'          => 'required',
             'animal_id'         => 'required',
-            'race_id'           => 'required',
+            // 'race_id'           => 'required',
             'symptoms'          => 'required',
-            'vaccines'          => 'required',
+            // 'vaccines'          => 'required',
         ];
     }
 
@@ -50,9 +50,9 @@ class InicioFormRequest extends FormRequest
             'age.required'          =>  'La edad de tu mascota es requerida',
             'age_type.required'     =>  'El tipo de edad debe estar especificada',
             'animal_id.required'    =>  'Debes decir que tipo de animal tienes',
-            'race_id.required'      =>  'Debes definir algo en la cuadro de raza',
+            // 'race_id.required'      =>  'Debes definir algo en la cuadro de raza',
             'symptoms.required'     =>  'Los sintomas son requeridos',
-            'vaccines.required'     =>  'Las vacunas son necesarias',
+            // 'vaccines.required'     =>  'Las vacunas son necesarias',
         ];
     }
 }

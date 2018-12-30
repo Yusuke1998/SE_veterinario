@@ -36,5 +36,6 @@ class Mascot extends Model
         if($name){
             return $query->where('name','LIKE',"%$name%");
         }
-    }    
+    }
+    
 }

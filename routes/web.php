@@ -30,8 +30,12 @@ Route::group(['prefix' => 'administrar'],function(){
 	Route::resource('/Usuarios','UsersController');
 	Route::resource('/Tratamientos','TreatmentsController');
 	Route::get('/Tratamiento/nuevo/{id}', 'TreatmentsController@createnew')->name('Tratamientos.crear');
+	
 	Route::resource('/Mascotas','MascotsController');
+	Route::post('/Macotas/buscar', 'MascotsController@mascotSearch')->name('mascott.Search');
+
 	Route::resource('/Personas','PeopleController');
+	Route::post('/Personas/buscar', 'PeopleController@personSearch')->name('person.Search');
 
 });
 // <---------------------------------------------------------------------------------->

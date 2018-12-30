@@ -69,51 +69,57 @@ class InicioController extends Controller
         $reglas = Rule::all();
 
         foreach ($reglas as $regla) {
-                        
-            if ($mascota->animal_id == $regla->animal_id && $mascota->race_id == $regla->race_id) {
+
+            if ($regla->weight_2 = null){
+                    $regla->weight_2 = $regla->weight_1;
+                    $regla->weight_type_2 = $regla->weight_type_1;
+                    $regla->age_2 = $regla->age_1;
+                    $regla->age_type_2 = $regla->age_type_1;
+                }
                 
-                if( count($mascota->symptoms()->get()) == count($regla->symptoms()->get()) ) {
+                if ($mascota->animal_id == $regla->animal_id && $mascota->race_id == $regla->race_id) {
+                    
+                    if( count($mascota->symptoms()->get()) == count($regla->symptoms()->get()) ) {
 
-                    if ($mascota->weight_type == $regla->weight_type_1 || $mascota->weight_type == $regla->weight_type_2 ) {
+                        if ($mascota->weight_type == $regla->weight_type_1 || $mascota->weight_type == $regla->weight_type_2 ) {
 
-                        if ($mascota->weight >= $regla->weight_1 && $mascota->weight <= $regla->weight_2) {
+                            if ($mascota->weight >= $regla->weight_1 || $mascota->weight <= $regla->weight_2) {
 
-                            if ($mascota->age_type == $regla->age_type_1 || $mascota->age_type == $regla->age_type_2) {
+                                if ($mascota->age_type == $regla->age_type_1 || $mascota->age_type == $regla->age_type_2) {
 
-                                if ($mascota->age >= $regla->age_1 && $mascota->age <= $regla->age_2) {
-                                    #Se ordenan los sintomas de las colecciones por edad y se convierten en arrays
-                                    $regla_s = $regla->symptoms;
-                                    $mascota_s = $mascota->symptoms;
+                                    if ($mascota->age >= $regla->age_1 || $mascota->age <= $regla->age_2) {
+                                        #Se llama a la relacion con sintomas
+                                        $regla_s = $regla->symptoms;
+                                        $mascota_s = $mascota->symptoms;
+                                        #Se hace notar la direfencia de una coleccion con respecto a la otra
+                                        $diff = $regla_s->diff($mascota_s->all());
+                                        #Si la diferencia devuelve vacio la validacion pasar porque significa que no hay diferencias en las colecciones, es decir los arrays con sintomas
+                                        if (count($diff->all()) == 0 || $diff == '[]'){
 
-                                    $diff = $regla_s->diff($mascota_s->all());
-                                    // dd($diff->all());
-                                    if ($diff == '[]'){
+                                            // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo veterinario. Voy a comparar los datos de la mascota con las reglas y si concuerdan se crea un nuevo tratamiento asociado a la mascota especificada.
 
-                                        // Aqui debo crear un tratamiento basandome en las reglas que ya previamente deben haber sido creadas por el respectivo veterinario. Voy a comparar los datos de la mascota con las reglas y si concuerdan se crea un nuevo tratamiento asociado a la mascota especificada.
-
-                                        $tratamiento = new Treatment;
-                                        $tratamiento->name = 'Tratamiento para '.$mascota->name;
-                                        $tratamiento->description = $regla->treatment;
-                                        $tratamiento->mascot_id = $mascota->id;
-                                        
-                                        if (\Auth::user()) {
-                                        
-                                            if (\Auth::user()->Doctor) {
-                                                $tratamiento->doctor_id = \Auth::user()->Doctor->id;
-                                                $tratamiento->save();
+                                            $tratamiento = new Treatment;
+                                            $tratamiento->name = 'Tratamiento para '.$mascota->name;
+                                            $tratamiento->description = $regla->treatment;
+                                            $tratamiento->mascot_id = $mascota->id;
+                                            
+                                            if (\Auth::user()) {
+                                            
+                                                if (\Auth::user()->Doctor) {
+                                                    $tratamiento->doctor_id = \Auth::user()->Doctor->id;
+                                                    $tratamiento->save();
+                                                }
                                             }
+
+                                            $tratamiento->save();
+                                            return redirect(route('mascotSearch'))->with('info','Mascota y tratamiento creado con exito!');
                                         }
-
-                                        $tratamiento->save();
-                                        return redirect(route('mascotSearch'))->with('info','Mascota y tratamiento creado con exito!');
-                                    }
-
-                                } #Aqui cierrar la comparacion de edad
-                            } #Aqui cierrar la comparacion de tipo de edad 
-                        } #Aqui cierrar la comparacion de peso  
-                    } #Aqui cierrar la comparacion de tipo de peso    
-                } #Aqui cierra la comparacion de catidad de sintomas
-            } #Aqui cierra animal y raza comparacion con regla
+                                    } #Aqui cierrar la comparacion de edad
+                                } #Aqui cierrar la comparacion de tipo de edad 
+                            } #Aqui cierrar la comparacion de peso  
+                        } #Aqui cierrar la comparacion de tipo de peso    
+                    } #Aqui cierra la comparacion de catidad de sintomas
+                } #Aqui cierra animal y raza comparacion con regla        
         } #Aqui cierra el foreach
         return back()->with('info','Mascota creada con exito y en espera de Tratamiento!');
     }
@@ -128,8 +134,8 @@ class InicioController extends Controller
     
     // <---------------------------------------------------------------------------------->
 
-    public function mascotSearch(Request $request){
-        
+    public function mascotSearch(Request $request)
+    {
         $mascotas = Mascot::orderBy('created_at','DESC')->mascota($request->search)->paginate(10);
         return view('tratamiento')->with('mascotas',$mascotas);
     }

@@ -16,10 +16,6 @@ class Animal extends Model
     	return $this->hasOne(Race::class);
     }
 
-    // public function rule(){
-    // 	return $this->belongsTo(Rule::class);
-    // }
-
     public function rule(){
         return $this->hasMany(Rule::class);
     }

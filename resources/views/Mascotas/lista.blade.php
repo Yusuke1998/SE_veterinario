@@ -6,6 +6,15 @@
 	<p class="text-center">Mascotas registradas.</p>
 </div>
 <div class="col-md-12">
+	<form action="{{ route('mascott.Search') }}" method="post">
+		<div class="input-group margin">
+			{{ csrf_field() }}
+            <input type="text" class="form-control" name="search" placeholder="Ingresa el nombre de la mascota">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-warning btn-flat">Buscar!</button>
+            </span>
+      	</div>
+	</form>
 	<div class="panel">
 		<div class="panel-title">
 			<p class="h4">Todas las mascotas registradas por el SE</p>

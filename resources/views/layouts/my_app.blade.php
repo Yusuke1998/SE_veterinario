@@ -249,6 +249,7 @@
 		</div>
 	</div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/my.js') }}"></script>
     <script src="{{ asset('chosen/chosen.jquery.js') }}"></script>
     <script>
     	@yield('scripts')

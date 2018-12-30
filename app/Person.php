@@ -11,5 +11,15 @@ class Person extends Model
     public function mascot(){
     	return $this->hasOne(Mascot::class);
     }
+
+    public function scopePersona($query, $name){
+        if($name){
+            return $query->
+            where('firstname','LIKE',"%$name%")
+            ->orWhere('lastname','LIKE',"%$name%")
+            ->orWhere('telephone','LIKE',"%$name%")
+            ->orWhere('email','LIKE',"%$name%");
+        }
+    }
     
 }

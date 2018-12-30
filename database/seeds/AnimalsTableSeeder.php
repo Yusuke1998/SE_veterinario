@@ -9,8 +9,9 @@ class AnimalsTableSeeder extends Seeder
     	$animales = array(
             'Perro'=>'El mejor amigo del hombre',
             'Gato'=>'El felino preferido por los egipcios',
-            'Loro'=>'Todos quisieran tener la libertad de volar y hablar',
+            'Conejo'=>'El conejo es rapido y le gusta procrear :v',
             'Tortuga'=>'Lenta pero segura',
+            'Loro'=>'Todos quisieran tener la libertad de volar y hablar',
             'Pez'=>'Conocer las profundidas del mar son un hobbit',
             'Tigre'=>'El felino mas fuerte y temido',
             'Leon'=>'El rey de la selva sin duda alguna',

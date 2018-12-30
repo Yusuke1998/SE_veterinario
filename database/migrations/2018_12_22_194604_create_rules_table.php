@@ -15,12 +15,12 @@ class CreateRulesTable extends Migration
             $table->string('treatment');
             $table->integer('age_1');
             $table->enum('age_type_1',['Dias','Semanas','Meses','Años']);
-            $table->integer('age_2');
-            $table->enum('age_type_2',['Dias','Semanas','Meses','Años']);
+            $table->integer('age_2')->nullable();
+            $table->enum('age_type_2',['Dias','Semanas','Meses','Años'])->nullable();
             $table->float('weight_1');
             $table->enum('weight_type_1',['Gramos','Kilogramos','Toneladas']);
-            $table->float('weight_2');
-            $table->enum('weight_type_2',['Gramos','Kilogramos','Toneladas']);
+            $table->float('weight_2')->nullable();
+            $table->enum('weight_type_2',['Gramos','Kilogramos','Toneladas'])->nullable();
 
             $table->integer('doctor_id')->unsigned()->nullable();
             $table->integer('animal_id')->unsigned();

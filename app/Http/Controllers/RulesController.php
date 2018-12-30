@@ -23,7 +23,7 @@ class RulesController extends Controller
 
     public function index()
     {
-        $reglas = Rule::all();
+        $reglas = Rule::orderBy('created_at','DESC')->paginate(10);
         return view('Reglas.listarReglas')->with('reglas',$reglas);
     }
 

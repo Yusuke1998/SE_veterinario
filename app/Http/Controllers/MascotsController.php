@@ -32,4 +32,9 @@ class MascotsController extends Controller
     {
         return back()->with('info','Mascota eliminada con exito!');
     }
+
+    public function mascotSearch(Request $request){
+        $mascotas = Mascot::orderBy('created_at','DESC')->mascota($request->search)->paginate(10);
+        return view('Mascotas.lista')->with('mascotas',$mascotas);
+    }
 }

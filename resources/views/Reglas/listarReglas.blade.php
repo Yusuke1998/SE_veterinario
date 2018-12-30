@@ -47,8 +47,16 @@
 						@endforeach
 					@endif
 				</td>
-				<td>({{ $regla->weight_1 }}&nbsp{{ $regla->weight_type_1 }}) hasta ({{ $regla->weight_2 }}&nbsp{{ $regla->weight_type_2 }})</td>
-				<td>({{ $regla->age_1 }}&nbsp{{ $regla->age_type_1 }}) hasta ({{ $regla->age_2 }}&nbsp{{ $regla->age_type_2 }})</td>
+				<td>({{ $regla->weight_1 }}&nbsp{{ $regla->weight_type_1 }})
+					@if($regla->weight_2) 
+						hasta ({{ $regla->weight_2 }}&nbsp{{ $regla->weight_type_2 }})
+					@endif
+				</td>
+				<td>({{ $regla->age_1 }}&nbsp{{ $regla->age_type_1 }}) 
+					@if($regla->age_2)
+						hasta ({{ $regla->age_2 }}&nbsp{{ $regla->age_type_2 }})
+					@endif
+				</td>
 				<td>
 					<div class="btn-group">
 						<a class="btn btn-info btn-sm" href="{{ Route('Reglas.edit',$regla->id) }}" title="Editar esta regla">Editar</a>

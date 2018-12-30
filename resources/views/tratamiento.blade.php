@@ -11,11 +11,11 @@
 			<div class="col-md-12">
 				<form action="{{ route('mascotSearch') }}" method="get">
 					<div class="input-group margin">
-	                <input type="text" class="form-control" name="search" placeholder="Ingresa el nombre de tu mascota">
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-warning btn-flat">Buscar!</button>
-                    </span>
-              	</div>
+		                <input type="text" class="form-control" name="search" placeholder="Ingresa el nombre de tu mascota">
+	                    <span class="input-group-btn">
+	                      <button type="button" class="btn btn-warning btn-flat">Buscar!</button>
+	                    </span>
+	              	</div>
 				</form>
 			</div>
 		</div>
