@@ -25,4 +25,12 @@ class Rule extends Model
     public function symptoms(){
         return $this->belongsToMany(Symptom::class);
     }
+
+    public function scopeRule($query, $name){
+        if($name){
+            return $query->where('title','LIKE',"%$name%")
+            ->orWhere('description','LIKE',"%$name%")
+            ->orWhere('treatment','LIKE',"%$name%");
+        }
+    }
 }

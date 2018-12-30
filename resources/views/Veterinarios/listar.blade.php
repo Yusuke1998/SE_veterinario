@@ -12,6 +12,15 @@
 	}
 </style>
 <div class="col-md-12">
+	<form action="{{ route('doctor.Search') }}" method="post">
+		<div class="input-group margin">
+			{{ csrf_field() }}
+            <input type="text" class="form-control" name="search" placeholder="Ingresa el nombre, apellido o correo electronico">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-warning btn-flat">Buscar!</button>
+            </span>
+      	</div>
+	</form>
 	<table class="table table-bordered">
 		<thead>
 			<tr>

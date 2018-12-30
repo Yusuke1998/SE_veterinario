@@ -26,5 +26,11 @@ class Race extends Model
             where('animal_id',$id);
         }
     }
+
+    public function scopeRace($query, $name){
+        if($name){
+            return $query->where('name','LIKE',"%$name%");
+        }
+    }
     
 }

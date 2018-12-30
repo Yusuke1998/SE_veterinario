@@ -16,4 +16,11 @@ class Treatment extends Model
     public function doctor(){
     	return $this->belongsTo(Doctor::class);
     }
+
+    public function scopeTreatment($query, $name){
+        if($name){
+            return $query->where('name','LIKE',"%$name%")
+            ->orWhere('description','LIKE',"%$name%");
+        }
+    }
 }

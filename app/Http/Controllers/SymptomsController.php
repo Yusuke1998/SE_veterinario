@@ -19,6 +19,12 @@ class SymptomsController extends Controller
         ->with('sintomas',$sintomas);
     }
 
+    public function symptomSearch(Request $request){
+        $sintomas = Symptom::orderBy('created_at','DESC')->symptom($request->search)->paginate(10);
+        return view('Sintomas.listar')
+        ->with('sintomas',$sintomas);
+    }
+
     public function create()
     {
         return view('Sintomas.crear');

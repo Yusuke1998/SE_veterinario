@@ -50,4 +50,10 @@ class AnimalsController extends Controller
         $animal = Animal::find($id)->delete();
         return redirect(Route('Animales.index'))->with('info','Eliminado con exito!');
     }
+
+    public function animalSearch(Request $request){
+        $animales = Animal::orderBy('created_at','DESC')->animal($request->search)->paginate(10);
+        return view('Animales.listar')
+        ->with('animales',$animales);
+    }
 }

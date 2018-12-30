@@ -20,6 +20,12 @@ class UsersController extends Controller
         ->with('usuarios',$usuarios);
     }
 
+    public function userSearch(Request $request){
+        $usuarios = User::orderBy('created_at','DESC')->user($request->search)->paginate(10);
+        return view('Usuarios.listar')
+        ->with('usuarios',$usuarios);
+    }
+
     public function create()
     {
         return view('Usuarios.crear');

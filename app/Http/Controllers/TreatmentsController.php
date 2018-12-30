@@ -29,6 +29,13 @@ class TreatmentsController extends Controller
         ->with('tratamientos',$tratamientos);
     }
 
+    public function treatmentSearch(Request $request)
+    {
+        $tratamientos = Treatment::orderBy('created_at','DESC')->treatment($request->search)->paginate(5);
+        return view('Tratamientos.lista')
+        ->with('tratamientos',$tratamientos);
+    }
+
     public function show($id){
         $tratamiento = Treatment::find($id);
         return view('Tratamientos.ver')->with('tratamiento',$tratamiento);

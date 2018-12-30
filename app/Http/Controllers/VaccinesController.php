@@ -19,6 +19,13 @@ class VaccinesController extends Controller
         ->with('vacunas',$vacunas);
     }
 
+    public function vaccineSearch(Request $request)
+    {
+        $vacunas = Vaccine::orderBy('created_at','DESC')->vaccine($request->search)->paginate(10);
+        return view('Vacunas.listar')
+        ->with('vacunas',$vacunas);
+    }
+
     public function create()
     {
         return view('Vacunas.crear');

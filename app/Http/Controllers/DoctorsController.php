@@ -20,6 +20,11 @@ class DoctorsController extends Controller
         return view('Veterinarios.listar')->with('doctores',$doctores);
     }
 
+    public function doctorSearch(Request $request){
+        $doctores = Doctor::orderBy('created_at','DESC')->doctor($request->search)->paginate(10);
+        return view('Veterinarios.listar')->with('doctores',$doctores);
+    }
+
     public function destroy($id)
     {
         $doctores = Doctor::find($id)->delete();

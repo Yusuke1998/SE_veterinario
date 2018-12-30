@@ -11,6 +11,15 @@
 			<p class="h4">Todos los tratamientos creados.</p>
 		</div>
 		<div class="panel-body">
+			<form action="{{ route('treatment.Search') }}" method="post">
+				<div class="input-group margin">
+					{{ csrf_field() }}
+		            <input type="text" class="form-control" name="search" placeholder="Ingresa el nombre">
+		            <span class="input-group-btn">
+		              <button type="submit" class="btn btn-warning btn-flat">Buscar!</button>
+		            </span>
+		      	</div>
+			</form>
 			<table class="table">
 				<thead>
 					<tr>

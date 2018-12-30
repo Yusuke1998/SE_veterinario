@@ -27,6 +27,12 @@ class RulesController extends Controller
         return view('Reglas.listarReglas')->with('reglas',$reglas);
     }
 
+    public function ruleSearch(Request $request)
+    {
+        $reglas = Rule::orderBy('created_at','DESC')->rule($request->search)->paginate(10);
+        return view('Reglas.listarReglas')->with('reglas',$reglas);
+    }
+
     public function create()
     {
         $animales = Animal::all();

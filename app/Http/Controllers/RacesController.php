@@ -24,6 +24,14 @@ class RacesController extends Controller
         ->with('animales',$animales);
     }
 
+    public function raceSearch(Request $request){
+        $razas = Race::orderBy('created_at','DESC')->race($request->search)->paginate(10);
+        $animales = Animal::all();
+        return view('Razas.listar')
+        ->with('razas',$razas)
+        ->with('animales',$animales);
+    }
+
     public function create()
     {
         $animales = Animal::all();

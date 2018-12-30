@@ -15,4 +15,10 @@ class Symptom extends Model
     public function rules(){
         return $this->belongsToMany(Rule::class);
     }
+
+    public function scopeSymptom($query, $name){
+        if($name){
+            return $query->where('name','LIKE',"%$name%");
+        }
+    }
 }
