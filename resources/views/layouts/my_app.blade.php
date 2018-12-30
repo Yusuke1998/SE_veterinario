@@ -6,12 +6,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('chosen/chosen.css') }}" rel="stylesheet">
 </head>
-<style>
-	body
-	{
-		/*background: url('{{ asset('img/logo1.jpg') }}') no-repeat top center;*/
-	}
-</style>
 <body>
 	@guest
 		<nav class="navbar navbar-default navbar-static-top">
@@ -29,7 +23,7 @@
 	                <!-- Branding Image -->
 	                <a class="navbar-brand-jjmm" href="{{ url('/registro') }}">
 	                    {{-- @yield('title_nav','SE - Asistente Veterinario') --}}
-	                    <img src="{{ asset('img/fondo1.jpg') }}" width="50px" alt="LOGO-SE">
+	                    <img src="{{ asset('img/logo.jpg') }}" width="50px" alt="LOGO-SE">
 	                </a>
 	            </div>
 

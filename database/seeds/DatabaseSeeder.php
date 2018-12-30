@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VaccinesTableSeeder::class);
         $this->call(AnimalsTableSeeder::class);
         $this->call(RacesTableSeeder::class);
-        $this->call(MascotsTableSeeder::class); 
-        $this->call(TreatmentsTableSeeder::class);
+        // $this->call(MascotsTableSeeder::class); 
+        // $this->call(TreatmentsTableSeeder::class);
     }
 }
