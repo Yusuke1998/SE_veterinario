@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserFormRequest;
 use App\User;
 
 class UsersController extends Controller
@@ -20,7 +21,20 @@ class UsersController extends Controller
         ->with('usuarios',$usuarios);
     }
 
-    public function userSearch(Request $request){
+    public function userSearch(Request $request)
+    {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
+        
         $usuarios = User::orderBy('created_at','DESC')->user($request->search)->paginate(10);
         return view('Usuarios.listar')
         ->with('usuarios',$usuarios);
@@ -31,8 +45,9 @@ class UsersController extends Controller
         return view('Usuarios.crear');
     }
 
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
+
         $usuario = User::create([
             'username'      =>  $request->username,
             'email'         =>  $request->email,

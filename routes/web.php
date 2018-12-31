@@ -6,13 +6,19 @@ Auth::routes();
 Route::get('/',function(){
 	return view('index');
 });
+
 Route::get('/acerca_de', function(){
 	return view('acercade');
 })->name('acercade');
+
 Route::get('/registro', 'InicioController@index')->name('inicio');
+
 Route::get('/Mascotas', 'InicioController@mascotSearch')->name('mascotSearch');
+
 Route::get('/Tratamiento/{id}','InicioController@show')->name('Tratamiento.show');
+
 Route::post('/Mascota','InicioController@store')->name('Mascota.store');
+
 Route::get('/ajax-animal' , 'InicioController@ajax');
 // <---------------------------------------------------------------------------------->
 

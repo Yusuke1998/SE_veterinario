@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\DoctorFormRequest;
 use App\Doctor;
 use App\User;
 
@@ -20,7 +21,20 @@ class DoctorsController extends Controller
         return view('Veterinarios.listar')->with('doctores',$doctores);
     }
 
-    public function doctorSearch(Request $request){
+    public function doctorSearch(Request $request)
+    {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
+        
         $doctores = Doctor::orderBy('created_at','DESC')->doctor($request->search)->paginate(10);
         return view('Veterinarios.listar')->with('doctores',$doctores);
     }
@@ -28,14 +42,18 @@ class DoctorsController extends Controller
     public function destroy($id)
     {
         $doctores = Doctor::find($id)->delete();
-        return redirect(Route('Veterinarios.index')->with('info','Eliminado con exito!'));
+        return redirect(Route('Veterinarios.index'))->with('info','Eliminado con exito!');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('Veterinarios.crear');
     }
 
-    public function store(Request $request){
+    public function store(DoctorFormRequest $request)
+    {
+
+        // return dd($request->all());
 
         $usuario = User::create([
             'username'      =>  $request->username,
@@ -53,6 +71,6 @@ class DoctorsController extends Controller
             'user_id'       =>  $usuario->id
         ]);
 
-        return redirect(Route('Veterinarios.index'))->with('info',$request->firstname.' creado con exito!');
+        return redirect(Route('Veterinarios.index'))->with('info','Veterinario creado con exito!');
     }
 }

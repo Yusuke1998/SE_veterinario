@@ -30,7 +30,20 @@ class PeopleController extends Controller
         return redirect(Route('Personas.index'))->with('info','Eliminado con exito!');
     }
 
-    public function personSearch(Request $request){
+    public function personSearch(Request $request)
+    {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
+
        $personas = Person::orderBy('created_at','DESC')->persona($request->search)->paginate(5);
         return view('Personas.listar')
         ->with(compact('personas'));

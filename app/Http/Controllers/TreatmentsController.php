@@ -31,6 +31,18 @@ class TreatmentsController extends Controller
 
     public function treatmentSearch(Request $request)
     {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
+        
         $tratamientos = Treatment::orderBy('created_at','DESC')->treatment($request->search)->paginate(5);
         return view('Tratamientos.lista')
         ->with('tratamientos',$tratamientos);

@@ -29,6 +29,18 @@ class RulesController extends Controller
 
     public function ruleSearch(Request $request)
     {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
+        
         $reglas = Rule::orderBy('created_at','DESC')->rule($request->search)->paginate(10);
         return view('Reglas.listarReglas')->with('reglas',$reglas);
     }

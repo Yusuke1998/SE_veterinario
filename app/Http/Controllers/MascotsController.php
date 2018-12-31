@@ -33,7 +33,20 @@ class MascotsController extends Controller
         return back()->with('info','Mascota eliminada con exito!');
     }
 
-    public function mascotSearch(Request $request){
+    public function mascotSearch(Request $request)
+    {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
+
         $mascotas = Mascot::orderBy('created_at','DESC')->mascota($request->search)->paginate(10);
         return view('Mascotas.lista')->with('mascotas',$mascotas);
     }
