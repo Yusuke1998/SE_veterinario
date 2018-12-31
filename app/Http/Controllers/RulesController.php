@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\RuleFormRequest;
 use App\Animal;
 use App\Race;
 use App\Vaccine;
@@ -59,7 +60,7 @@ class RulesController extends Controller
         ->with('sintomas',$sintomas);
     }
 
-    public function store(Request $request)
+    public function store(RuleFormRequest $request)
     {
         $regla = new Rule;
         $regla->title = $request->title;
@@ -84,7 +85,6 @@ class RulesController extends Controller
         $regla->race_id = $request->race_id;
         $regla->save();
 
-        // dd($request->symptoms);
         $regla->symptoms()->sync($request->symptoms);
 
 
@@ -108,16 +108,23 @@ class RulesController extends Controller
         ->with('sintomas',$sintomas);
     }
 
-    public function update(Request $request, $id)
+    public function update(RuleFormRequest $request, $id)
     {
         $regla = Rule::find($id);
         $regla->title = $request->title;
         $regla->description = $request->description;
         $regla->treatment = $request->treatment;
+        
         $regla->age_1 = $request->age_1;
         $regla->age_2 = $request->age_2;
+        $regla->age_type_1 = $request->age_type_1;
+        $regla->age_type_2 = $request->age_type_2;
+        
         $regla->weight_1 = $request->weight_1;
         $regla->weight_2 = $request->weight_2;
+        $regla->weight_type_1 = $request->weight_type_1;
+        $regla->weight_type_2 = $request->weight_type_2;
+
         if (\Auth::user()->Doctor) {
             $regla->doctor_id = \Auth::user()->Doctor->id;
         }else{

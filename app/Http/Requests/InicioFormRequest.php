@@ -30,9 +30,9 @@ class InicioFormRequest extends FormRequest
             'age'               => 'required',
             'age_type'          => 'required',
             'animal_id'         => 'required',
-            // 'race_id'           => 'required',
+            'race_id'           => 'nullable',
             'symptoms'          => 'required',
-            // 'vaccines'          => 'required',
+            'vaccines'          => 'nullable',
         ];
     }
 
@@ -45,7 +45,7 @@ class InicioFormRequest extends FormRequest
             'telephone.required'    =>  'El telefono del dueño es requerido',
             'address.required'      =>  'La direccion del dueño es requerida',
             'name.required'         =>  'El nombre de la mascota es requerida',
-            'weight.required'       =>  'El pseso de la mascota es requerida',
+            'weight.required'       =>  'El peso de la mascota es requerida',
             'weight_type.required'  =>  'Debes definir el tipo de peso de tu mascota',
             'age.required'          =>  'La edad de tu mascota es requerida',
             'age_type.required'     =>  'El tipo de edad debe estar especificada',
