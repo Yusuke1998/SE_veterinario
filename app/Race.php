@@ -15,5 +15,22 @@ class Race extends Model
     public function mascot(){
     	return $this->hasOne(Mascot::class);
     }
+
+    public function rule(){
+        return $this->hasMany(Rule::class);
+    }
+
+    public function ScopeRaza($query, $id){
+        if($id){
+            return $query->
+            where('animal_id',$id);
+        }
+    }
+
+    public function scopeRace($query, $name){
+        if($name){
+            return $query->where('name','LIKE',"%$name%");
+        }
+    }
     
 }

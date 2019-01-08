@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mascot extends Model
 {
-    protected $fillable = ['name','weight','age','animal_id','race_id','person_id'];
+    protected $fillable = ['name','weight','weight_type','age','age_type','animal_id','race_id','person_id'];
 
     public function treatment(){
     	return $this->hasOne(Treatment::class);
@@ -36,5 +36,6 @@ class Mascot extends Model
         if($name){
             return $query->where('name','LIKE',"%$name%");
         }
-    }    
+    }
+    
 }

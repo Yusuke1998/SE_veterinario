@@ -10,9 +10,8 @@ class CreateRacesTable extends Migration
     {
         Schema::create('races', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('photo')->default('race.jpg');
+            $table->string('name')->default('Otro');
+            $table->string('description')->default('Otro');
             $table->integer('animal_id')->unsigned();
             $table->foreign('animal_id')->references('id')->on('animals')->onDelete('cascade');
             $table->timestamps();

@@ -12,54 +12,42 @@ use App\Person;
 use App\Treatment;
 use App\Doctor;
 use App\User;
+use App\Rule;
 
 class MascotsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
-        $animales = Animal::all();
-        $razas = Race::all();
-        $vacunas = Vaccine::all();
-        $sintomas = Symptom::all();
-
-        return view('inicio')
-        ->with('animales',$animales)
-        ->with('razas',$razas)
-        ->with('vacunas',$vacunas)
-        ->with('sintomas',$sintomas);
+        $mascotas = Mascot::orderBy('created_at','DESC')->paginate(5);
+        return view('Mascotas.lista')
+        ->with('mascotas',$mascotas);
     }
 
-    public function store(Request $request)
+    public function destroy($id)
     {
-        $dueño = new Person;
-        $dueño->firstname      = $request->firstname;
-        $dueño->lastname       = $request->lastname;
-        $dueño->email          = $request->email;
-        $dueño->telephone      = $request->telephone;
-        $dueño->address        = $request->address;
-        $dueño->save();
-
-        $mascota = new Mascot;
-        $mascota->name         =  $request->name;
-        $mascota->weight       =  $request->weight;
-        $mascota->age          =  $request->age;
-        $mascota->animal_id    =  $request->animal_id;
-        $mascota->race_id      =  $request->race_id;
-        $mascota->person()->associate($dueño);
-        $mascota->save();
-
-        $mascota->symptoms()->sync($request->symptoms);
-        $mascota->vaccines()->sync($request->vaccines);
-
-        return redirect(route('mascotSearch'));
+        return back()->with('info','Mascota eliminada con exito!');
     }
 
-    public function mascotSearch(Request $request){
-        // dd($request->search);
-        
-        $mascotas = Mascot::orderBy('name','ASC')->mascota($request->search)->paginate(10);
+    public function mascotSearch(Request $request)
+    {
+        $data = $request->validate(
+        [
+            'search'    =>  'min:1',
+            'search'    =>  'required',
+            'search'    =>  'nullable'
+        ],
+        [
+            'search.min'        =>  'El campo no debe estar vacio!',
+            'search.required'   =>  'El campo es requerido!',
+            'search.nullable'   =>  'El campo es requerido!',
+        ]);
 
-        return view('tratamiento')->with('mascotas',$mascotas);
+        $mascotas = Mascot::orderBy('created_at','DESC')->mascota($request->search)->paginate(10);
+        return view('Mascotas.lista')->with('mascotas',$mascotas);
     }
 }

@@ -1,17 +1,17 @@
 @extends('layouts.my_app')
 @section('title') Tratamiento a seguir! @stop
+@section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
-	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
 	<p class="text-center">Visualiza o imprime el tratamiento recomendado.</p>
 </div>
-<div class="col-md-8">
+<div class="col-md-12">
 	<div class="panel">
 		<div class="panel-title">
-			<p class="h4">{{ $tratamiento->name }}</p>
+			<p class="h3">{{ $tratamiento->name }}</p>
 		</div>
 		<div class="panel-body">
-			<p class="text-center">{{ $tratamiento->description }}</p>
+			<p class="h4 text-center">{{ $tratamiento->description }}</p>
 			<table class="table">
 				<thead>
 					<tr>
@@ -28,28 +28,24 @@
 					<tr>
 						<td>{{ $tratamiento->mascot->name }}</td>
 						<td>{{ $tratamiento->mascot->animal->name }}</td>
-						<td>{{ $tratamiento->mascot->race->name }}</td>
-						<td>{{ $tratamiento->mascot->age }}</td>
-						<td>{{ $tratamiento->mascot->weight }}Kg</td>
 						<td>
-							{{-- {{ count( $tratamiento->mascot->vaccines) }} --}}
-								@foreach($tratamiento->mascot->vaccines as $vaccine)
-									@if(count( $tratamiento->mascot->vaccines)>1)
-										{{ $vaccine->name }},
-									@else
-										{{ $vaccine->name }}.
-									@endif
-								@endforeach
+							@if(!empty($tratamiento->mascot->race) && isset($tratamiento->mascot->race))
+								{{ $tratamiento->mascot->race->name }}
+							@else
+								No esta registrada!
+							@endif
+						</td>
+						<td>{{ $tratamiento->mascot->age }}&nbsp{{ $tratamiento->mascot->age_type }}</td>
+						<td>{{ $tratamiento->mascot->weight }}&nbsp{{ $tratamiento->mascot->weight_type }}</td>
+						<td>
+							@foreach($tratamiento->mascot->vaccines as $vaccine)
+								<li>{{ $vaccine->name }}.</li>
+							@endforeach
 						</td>
 						<td>
-							{{-- {{ count( $tratamiento->mascot->symptoms) }} --}}
-								@foreach($tratamiento->mascot->symptoms as $symptom)
-									@if(count( $tratamiento->mascot->symptoms)>1)
-										{{ $symptom->name }},
-									@else
-										{{ $symptom->name }}.
-									@endif
-								@endforeach
+							@foreach($tratamiento->mascot->symptoms as $symptom)
+								<li>{{ $symptom->name }}.</li>
+							@endforeach
 						</td>
 					</tr>
 				</tbody>
@@ -62,8 +58,5 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="col-md-4">
-	<h3>Aqui va algo dinamico</h3>
 </div>
 @stop

@@ -11,4 +11,10 @@ class Vaccine extends Model
     public function mascots(){
     	return $this->belongsToMany(Mascot::class);
     }
+
+    public function scopeVaccine($query, $name){
+        if($name){
+            return $query->where('name','LIKE',"%$name%");
+        }
+    }
 }

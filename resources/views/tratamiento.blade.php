@@ -1,24 +1,21 @@
 @extends('layouts.my_app')
 @section('title') Mascotas! @stop
+@section('title_nav') SE @stop
 @section('content')
 <div class="col-md-12">
-	<h1 class="text-center">Hola, soy el asistente veterinario!</h1>
 	<p class="text-center">Busca tu mascota y visualiza el tratamiento recomendado.</p>
 </div>
-<div class="col-md-8">
+<div class="col-md-12">
 	<div class="panel">
 		<div class="panel-title">
 			<div class="col-md-12">
 				<form action="{{ route('mascotSearch') }}" method="get">
-
-					<div class="row">
-						<div class="col-md-9">
-							<input class="form-control" type="search" name="search" value="" placeholder="Ingresa el nombre de tu mascota">
-						</div>
-						<div class="col-md-3">
-							<button class="btn btn-info form-control" type="submit">Buscar</button>
-						</div>
-					</div>
+					<div class="input-group margin">
+		                <input type="text" class="form-control" name="search" placeholder="Ingresa el nombre de tu mascota">
+	                    <span class="input-group-btn">
+	                      <button type="button" class="btn btn-warning btn-flat">Buscar!</button>
+	                    </span>
+	              	</div>
 				</form>
 			</div>
 		</div>
@@ -39,10 +36,16 @@
 					@forelse($mascotas as $mascota)
 					<tr>
 						<td>{{ $mascota->name }}</td>
-						<td>{{ $mascota->age }}</td>
-						<td>{{ $mascota->weight }}</td>
+						<td>{{ $mascota->age }}&nbsp{{ $mascota->age_type }}</td>
+						<td>{{ $mascota->weight }}&nbsp{{ $mascota->weight_type }}</td>
 						<td>{{ $mascota->animal->name }}</td>
-						<td>{{ $mascota->race->name }}</td>
+						<td>
+							@if($mascota->race)
+								{{ $mascota->race->name }}
+							@else
+								No esta registrada!
+							@endif
+						</td>
 						<td>{{ $mascota->person->firstname }}</td>
 						<td>
 							@if($mascota->treatment)
@@ -68,8 +71,5 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="col-md-4">
-	<h3>Aqui va algo dinamico</h3>
 </div>
 @stop

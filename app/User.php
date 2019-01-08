@@ -16,4 +16,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function Doctor(){
+    	return $this->hasOne(Doctor::class);
+    }
+
+    public function scopeUser($query, $name){
+        if($name){
+            return $query->where('username','LIKE',"%$name%")
+            ->orWhere('email','LIKE',"%$name%");
+        }
+    }
 }

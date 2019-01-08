@@ -13,13 +13,5 @@ class PeopleTableSeeder extends Seeder
         $dueño->telephone		= '04161428973';
         $dueño->address       	= 'Aragua, villa de cura';
         $dueño->save();
-
-        $dueño2 = new \App\Person();
-        $dueño2->firstname       = 'Jhon Johnson';
-        $dueño2->lastname        = 'Smith Western';
-        $dueño2->email       	= 'JJSW@gmail.com'; 
-        $dueño2->telephone		= '04161428973';
-        $dueño2->address       	= 'Miami, villes';
-        $dueño2->save();
     }
 }

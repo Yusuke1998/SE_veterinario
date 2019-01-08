@@ -7,16 +7,22 @@ class VaccinesTableSeeder extends Seeder
     public function run()
     {
        $vacunas = array(
-            'lajlkaj'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'Gfasfaato'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'afda'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'asdas'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'asdass'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'asdasda'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'sadsadsa'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'sadasdas'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'sadsssasdas'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-            'sadasdas'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+            'Anti-rabica'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #1'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #2'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #3'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #4'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #5'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #6'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #7'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #8'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #9'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #10'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #11'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #12'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #13'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #14'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+            'vacuna #15'=>'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
         );
 
         $vacuna = new \App\Vaccine();
@@ -24,7 +30,7 @@ class VaccinesTableSeeder extends Seeder
         foreach ($vacunas as $vacunan => $descripcion) {
             $vacuna::create([
                 'name'  =>  $vacunan,
-                'description'   =>  $descripcion,
+                'description'   =>  $descripcion
             ]);
         }
     }
