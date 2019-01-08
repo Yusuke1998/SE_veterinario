@@ -63,13 +63,13 @@
 					<label class="col-md-12">
 						Tipo y Raza.
 					</label>
-					<select class="my_select_1"  id="animal_id" name="animal_id">
+					<select class="form-control"  id="animal_id" name="animal_id">
 						<option value="">Animal</option>
 						@foreach($animales as $animal)
 							<option value="{{ $animal->id }}">{{ $animal->name }}</option>
 						@endforeach
 					</select>
-					<select class="my_select_11" id="race_id" name="race_id"></select>
+					<select class="form-control" id="race_id" name="race_id"></select>
 				</div>
 			</div>
 			<div class="col-md-12">
