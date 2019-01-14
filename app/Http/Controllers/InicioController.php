@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\InicioFormRequest;
+use Barryvdh\DomPDF\Facade as PDF;
 
 use App\Animal;
 use App\Race;
@@ -130,6 +131,17 @@ class InicioController extends Controller
     {
         $tratamiento = Treatment::find($id);
         return view('mascotaTratamiento')->with('tratamiento',$tratamiento);
+    }
+    
+    // <---------------------------------------------------------------------------------->
+
+    public function pdf($id)
+    {
+        $tratamiento = Treatment::find($id);
+        // return view('pdf.tratamiento',compact('tratamiento'));
+        $pdf = PDF::loadView('pdf.tratamiento', compact('tratamiento'));
+        return $pdf->stream();
+        // return $pdf->download('mascota_tratamiento.pdf');
     }
     
     // <---------------------------------------------------------------------------------->

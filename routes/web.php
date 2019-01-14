@@ -16,6 +16,7 @@ Route::get('/registro', 'InicioController@index')->name('inicio');
 Route::get('/Mascotas', 'InicioController@mascotSearch')->name('mascotSearch');
 
 Route::get('/Tratamiento/{id}','InicioController@show')->name('Tratamiento.show');
+Route::get('/Tratamiento/pdf/{id}', 'InicioController@pdf')->name('pdf.tratamiento');
 
 Route::post('/Mascota','InicioController@store')->name('Mascota.store');
 
