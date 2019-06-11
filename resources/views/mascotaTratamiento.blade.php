@@ -8,7 +8,7 @@
 <div class="col-md-12">
 	<div class="panel">
 		<div class="panel-title">
-			<p class="h3">{{ $tratamiento->name }}</p>
+			<p class="h3" style="padding-left: 2%;">{{ $tratamiento->name }}</p>
 		</div>
 		<div class="panel-body">
 			<p class="h4 text-center">{{ $tratamiento->description }}</p>
@@ -53,7 +53,7 @@
 		</div>
 		<div class="panel-footer">
 			<div class="group-button">
-				<a class="btn btn-warning" href="#" title="Tratamiento en PDF">PDF</a>
+				<a class="btn btn-warning" target="_blank" href="{{ route('pdf.tratamiento',$tratamiento->id) }}" title="Tratamiento en PDF">PDF</a>
 				<a class="btn btn-info" href="{{ route('inicio') }}" title="Ir al inicio">Volver al inicio</a>
 			</div>
 		</div>

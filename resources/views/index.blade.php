@@ -27,9 +27,8 @@
 		background-attachment: fixed;
 	}
 
-	#logo{
-		border-radius: 40px;
-		background: darkblue;
+	#alogo{
+		margin-top: 4%;
 	}
 
 	
@@ -38,8 +37,7 @@
 
 <body class="main-body">
 	<div class="container">
-		<a id="alogo" href="{{ route('inicio') }}"  class="pull-left" title="Registra tu mascota">
-			<img id="logo" width="100px" src="{{ asset('img/logo.jpg') }}" alt="logo del asistente clinico">
+		<a id="alogo" href="{{ route('inicio') }}"  class="pull-left btn btn-info" title="Registra tu mascota">INICIO
 		</a>
 	</div>
 </body>
